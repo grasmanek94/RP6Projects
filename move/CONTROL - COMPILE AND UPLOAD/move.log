@@ -1,0 +1,145 @@
+﻿  ------------------- clean -------------------
+  
+  -------- begin --------
+  
+  Cleaning project:
+  rm -f control.cof
+  rm -f control.elf
+  rm -f control.map
+  rm -f control.sym
+  rm -f control.lss
+  rm -f control.o ../common/someCommonLib.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o 
+  rm -f control.lst ../common/someCommonLib.lst C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.lst C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst 
+  rm -f control.s ../common/someCommonLib.s C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.s C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.s
+  rm -f control.d ../common/someCommonLib.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.d
+  rm -f control.i ../common/someCommonLib.i C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.i C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.i
+  rm -f .dep/*
+  rmdir .dep
+  -------- end --------
+  
+  ------------------- build -------------------
+  
+  -------- begin --------
+  avr-gcc (GCC) 4.8.2 20131010 (prerelease)
+  Copyright (C) 2013 Free Software Foundation, Inc.
+  This is free software; see the source for copying conditions.  There is NO
+  warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  
+  
+  Compiling: control.c
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=control.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/control.o.d control.c -o control.o
+  In file included from control.c:2:0:
+  ../common/someCommonLib.h:3:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+   int someCommonFunction();
+   ^
+  
+  Compiling: ../common/someCommonLib.c
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=../common/someCommonLib.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/someCommonLib.o.d ../common/someCommonLib.c -o ../common/someCommonLib.o
+  ../common/someCommonLib.c:1:5: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+   int someCommonFunction()
+       ^
+  
+  Compiling: C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.c
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6ControlLib.o.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.c -o C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.o
+  
+  Compiling: C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6uart.o.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c -o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o
+  C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function '__vector_13':
+  C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:221:26: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
+    static volatile uint8_t dummy;
+                            ^
+  C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function 'clearReceptionBuffer':
+  C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:296:17: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
+    static uint8_t dummy;
+                   ^
+  
+  Linking: control.elf
+  avr-gcc -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=control.o -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/control.elf.d control.o ../common/someCommonLib.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6control/RP6ControlLib.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o --output control.elf -Wl,-Map=control.map,--cref    -lm
+  
+  Creating load file for Flash: control.hex
+  avr-objcopy -O ihex -R .eeprom control.elf control.hex
+  
+  Creating Extended Listing: control.lss
+  avr-objdump -h -S control.elf > control.lss
+  
+  Creating Symbol Table: control.sym
+  avr-nm -n control.elf > control.sym
+  
+  Size after:
+  AVR Memory Usage
+  ----------------
+  Device: atmega32
+  
+  Program:    2976 bytes (9.1% Full)
+  (.text + .data + .bootloader)
+  
+  Data:         90 bytes (4.4% Full)
+  (.data + .bss + .noinit)
+  
+  
+  
+  -------- end --------
+  
+  ------------------- info  -------------------
+  Using Project name    : control
+  Using Project path    : C:\Programs\RP6\RP6Projects\move\control\
+  Using Project HEX File: "C:\Programs\RP6\RP6Projects\move\control\control.hex"
+  Using Robotloader cmd : "C:\Programs\RP6\RobotLoader\"
+  ------------------- upload ------------------
+  RobotLoader - COMMANDLINE MODE
+  Perform Action: 
+  Upload Program...
+  --> Hexfile Path: C:\Programs\RP6\RP6Projects\move\control\control.hex
+  Listing all serial ports...
+  PORT: USB0 | RP6 USB Interface | ARV87UJR
+  Trying to open port: USB0 | RP6 USB Interface | ARV87UJR
+  COM OPEN!
+  USB0 | RP6 USB Interface | ARV87UJR open @38400baud
+  Set Comport...
+  Baudrate is set to: 38400
+  OK!
+  Bootloader message:
+  Upload in progress...
+  Baudrate is set to: 38400
+  Uploading new program to target device; Range: 0 - ba0
+  Connected to target!
+  Target ID received:
+  RP6: Board ID 1, Firmware Version 1.4, Board Rev.: 5
+  ["RP6 Robot Base", 1, MEGA32, 0, 30720, true]
+  Board with Battery Sensor --> Reading Battery voltage...
+  Bootloader message:
+  Connected to:
+  "RP6 Robot Base"
+  FW Version: 1.4
+  Battery Voltage: 7.64V
+  Voltage read: 7.64V
+  Battery Voltage is in acceptable range.
+  Setup High Speed...
+  Speed ACK!
+  Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 38400 to 500000 OK!
+  Setup OK!
+  Upload in progress...
+  Write 256b @0 ; CRC16: 0xDC8C
+  Write 256b @256 ; CRC16: 0xBC78
+  Write 256b @512 ; CRC16: 0x5B40
+  Write 256b @768 ; CRC16: 0x137C
+  Write 256b @1024 ; CRC16: 0x4CD6
+  Write 256b @1280 ; CRC16: 0xBA3C
+  Write 256b @1536 ; CRC16: 0xBFF
+  Write 256b @1792 ; CRC16: 0x4F9
+  Write 256b @2048 ; CRC16: 0xF77F
+  Write 256b @2304 ; CRC16: 0xE1BC
+  Write 256b @2560 ; CRC16: 0x740D
+  Write 256b @2816 ; CRC16: 0x52CF
+  Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 500000 to 38400 OK!
+  Bootloader message:
+  Task completed successfully!
+  Size: 2976 bytes, CRC16: 0x5951
+  File: control.hex
+  Time: 712ms
+  Upload complete!
+  Trying to close port...
+  COM CLOSED!
+  Port Closed!
+  Exit code: 0 - All done.
+  ---------------------------------------------
