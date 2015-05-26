@@ -1,0 +1,174 @@
+﻿Build started 26-5-2015 10:27:23.
+     1>Project "C:\Programs\RP6\RP6Projects\bp1\bp1.vcxproj" on node 2 (Build target(s)).
+     1>Build:
+         .\base\BUILDUPLOAD.bat
+         ------------------- clean -------------------
+         
+         -------- begin --------
+         
+         Cleaning project:
+         rm -f base.cof
+         rm -f base.elf
+         rm -f base.map
+         rm -f base.sym
+         rm -f base.lss
+         rm -f base.o ../common/someCommonLib.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o 
+         rm -f base.lst ../common/someCommonLib.lst C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.lst C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.lst 
+         rm -f base.s ../common/someCommonLib.s C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.s C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.s C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.s
+         rm -f base.d ../common/someCommonLib.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.d
+         rm -f base.i ../common/someCommonLib.i C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.i C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.i C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.i
+         rm -f .dep/*
+         rmdir .dep
+         -------- end --------
+         
+         ------------------- build -------------------
+         
+         -------- begin --------
+         avr-gcc (GCC) 4.8.2 20131010 (prerelease)
+         Copyright (C) 2013 Free Software Foundation, Inc.
+         This is free software; see the source for copying conditions.  There is NO
+         warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+         
+         
+         Compiling: base.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.o.d base.c -o base.o
+         
+         Compiling: ../common/someCommonLib.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=../common/someCommonLib.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/someCommonLib.o.d ../common/someCommonLib.c -o ../common/someCommonLib.o
+         ../common/someCommonLib.c:1:5: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+          int someCommonFunction()
+              ^
+         
+         Compiling: C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6uart.o.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c -o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o
+         C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function '__vector_13':
+         C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:221:26: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
+           static volatile uint8_t dummy;
+                                   ^
+         C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function 'clearReceptionBuffer':
+         C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:296:17: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
+           static uint8_t dummy;
+                          ^
+         
+         Compiling: C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6I2CslaveTWI.o.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.c -o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.o
+         
+         Compiling: C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.lst -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6RobotBaseLib.o.d C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c -o C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o
+         
+         Linking: base.elf
+         avr-gcc -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.o -I../common -IC:\Programs\RP6/RobotLoader/RP6Lib -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6common -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6base -IC:\Programs\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.elf.d base.o ../common/someCommonLib.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6common/RP6I2CslaveTWI.o C:\Programs\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o --output base.elf -Wl,-Map=base.map,--cref    -lm
+         
+         Creating load file for Flash: base.hex
+         avr-objcopy -O ihex -R .eeprom base.elf base.hex
+         
+         Creating Extended Listing: base.lss
+         avr-objdump -h -S base.elf > base.lss
+         
+         Creating Symbol Table: base.sym
+         avr-nm -n base.elf > base.sym
+         
+         Size after:
+         AVR Memory Usage
+         ----------------
+         Device: atmega32
+         
+         Program:    8438 bytes (25.8% Full)
+         (.text + .data + .bootloader)
+         
+         Data:        261 bytes (12.7% Full)
+         (.data + .bss + .noinit)
+         
+         
+         
+         -------- end --------
+         
+         ------------------- info  -------------------
+         Using Project name    : base
+         Using Project path    : C:\Programs\RP6\RP6Projects\bp1\base\
+         Using Project HEX File: "C:\Programs\RP6\RP6Projects\bp1\base\base.hex"
+         Using Robotloader cmd : "C:\Programs\RP6\RobotLoader\"
+         ------------------- upload ------------------
+         RobotLoader - COMMANDLINE MODE
+         Perform Action: 
+         Upload Program...
+         --> Hexfile Path: C:\Programs\RP6\RP6Projects\bp1\base\base.hex
+         Listing all serial ports...
+         PORT: USB0 | RP6 USB Interface | ARV8J61W
+         Trying to open port: USB0 | RP6 USB Interface | ARV8J61W
+         COM OPEN!
+         USB0 | RP6 USB Interface | ARV8J61W open @38400baud
+         Set Comport...
+         Baudrate is set to: 38400
+         OK!
+         Bootloader message:
+         Upload in progress...
+         Baudrate is set to: 38400
+         Uploading new program to target device; Range: 0 - 20f6
+         Connected to target!
+         Target ID received:
+         RP6: Board ID 1, Firmware Version 1.4, Board Rev.: 5
+         ["RP6 Robot Base", 1, MEGA32, 0, 30720, true]
+         Board with Battery Sensor --> Reading Battery voltage...
+         Bootloader message:
+         Connected to:
+         "RP6 Robot Base"
+         FW Version: 1.4
+         Battery Voltage: 8.33V
+         Voltage read: 8.33V
+         Battery Voltage is in acceptable range.
+         Setup High Speed...
+         Speed ACK!
+         Change baudrate of USB0 | RP6 USB Interface | ARV8J61W from 38400 to 500000 OK!
+         Setup OK!
+         Upload in progress...
+         Write 256b @0 ; CRC16: 0x4AF1
+         Write 256b @256 ; CRC16: 0x915C
+         Write 256b @512 ; CRC16: 0x64D1
+         Write 256b @768 ; CRC16: 0x61A9
+         Write 256b @1024 ; CRC16: 0xA5B8
+         Write 256b @1280 ; CRC16: 0x1BE
+         Write 256b @1536 ; CRC16: 0x6C39
+         Write 256b @1792 ; CRC16: 0x7198
+         Write 256b @2048 ; CRC16: 0xE1E6
+         Write 256b @2304 ; CRC16: 0x4A49
+         Write 256b @2560 ; CRC16: 0x46D2
+         Write 256b @2816 ; CRC16: 0x6370
+         Write 256b @3072 ; CRC16: 0x18D8
+         Write 256b @3328 ; CRC16: 0x8FDF
+         Write 256b @3584 ; CRC16: 0xC161
+         Write 256b @3840 ; CRC16: 0x5E6D
+         Write 256b @4096 ; CRC16: 0x3E8D
+         Write 256b @4352 ; CRC16: 0x4AD1
+         Write 256b @4608 ; CRC16: 0x526F
+         Write 256b @4864 ; CRC16: 0x12A
+         Write 256b @5120 ; CRC16: 0xA63
+         Write 256b @5376 ; CRC16: 0x1E6A
+         Write 256b @5632 ; CRC16: 0xD953
+         Write 256b @5888 ; CRC16: 0x213C
+         Write 256b @6144 ; CRC16: 0xD38E
+         Write 256b @6400 ; CRC16: 0xC1D2
+         Write 256b @6656 ; CRC16: 0xD9A1
+         Write 256b @6912 ; CRC16: 0x918A
+         Write 256b @7168 ; CRC16: 0x14FD
+         Write 256b @7424 ; CRC16: 0xF703
+         Write 256b @7680 ; CRC16: 0xFAA1
+         Write 256b @7936 ; CRC16: 0x1E59
+         Write 256b @8192 ; CRC16: 0x6F3E
+         Change baudrate of USB0 | RP6 USB Interface | ARV8J61W from 500000 to 38400 OK!
+         Bootloader message:
+         Task completed successfully!
+         Size: 8438 bytes, CRC16: 0xA3A5
+         File: base.hex
+         Time: 1389ms
+         Upload complete!
+         Trying to close port...
+         COM CLOSED!
+         Port Closed!
+         Exit code: 0 - All done.
+         ---------------------------------------------
+     1>Done Building Project "C:\Programs\RP6\RP6Projects\bp1\bp1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:15.11

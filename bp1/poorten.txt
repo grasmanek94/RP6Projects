@@ -1,0 +1,8 @@
+0 - mic
+1 - alle buttons
+2 - sensor LA
+3 - sensor RA
+4 - sensor RV
+5 - sensor LV
+6 - ?
+7 - ?
