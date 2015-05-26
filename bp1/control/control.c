@@ -68,7 +68,7 @@ uint16_t sensorState[4];
 
 void ProcessDistanceSensors()
 {
-	if (!isRotating)
+	if (!isRotating && isDriving)
 	{
 		for (int i = 0; i < 4; ++i)
 		{
@@ -99,52 +99,55 @@ void WriteFormattedNumber(int val)
 
 void ProcessRotation()
 {
-	if (!isRotating)
+	if (isDriving)
 	{
-		uint16_t min_dist_var = 200;
-		uint8_t tooCloseRight = sensorState[ESL_AR] > min_dist_var || sensorState[ESL_VR] > min_dist_var;
-		uint8_t tooCloseLeft = sensorState[ESL_AL] > min_dist_var || sensorState[ESL_VL] > min_dist_var;
-		uint8_t dir = (tooCloseRight == tooCloseLeft) ? 0 : (tooCloseLeft ? RIGHT : LEFT);
-
-		//WriteFormattedNumber(sensorState[0]);
-		//writeString_P(" ");
-		//WriteFormattedNumber(sensorState[1]);
-		//writeString_P(" ");
-		//WriteFormattedNumber(sensorState[2]);
-		//writeString_P(" ");
-		//WriteFormattedNumber(sensorState[3]);
-		//writeString_P(" ");
-		//WriteFormattedNumber(tooCloseRight);
-		//writeString_P(" ");
-		//WriteFormattedNumber(tooCloseLeft);
-		//writeString_P("\n");
-
-		memset(sensorState, 0, sizeof(sensorState));
-		lastState = 2;
-
-		if (dir)
+		if (!isRotating)
 		{
-			isRotating = 1;
-			stop();
-			rotate(100, dir, 60, NON_BLOCKING);
-			waitForTransmitComplete();
-			lastState = 3;
+			uint16_t min_dist_var = 200;
+			uint8_t tooCloseRight = sensorState[ESL_AR] > min_dist_var || sensorState[ESL_VR] > min_dist_var;
+			uint8_t tooCloseLeft = sensorState[ESL_AL] > min_dist_var || sensorState[ESL_VL] > min_dist_var;
+			uint8_t dir = (tooCloseRight == tooCloseLeft) ? 0 : (tooCloseLeft ? RIGHT : LEFT);
+
+			//WriteFormattedNumber(sensorState[0]);
+			//writeString_P(" ");
+			//WriteFormattedNumber(sensorState[1]);
+			//writeString_P(" ");
+			//WriteFormattedNumber(sensorState[2]);
+			//writeString_P(" ");
+			//WriteFormattedNumber(sensorState[3]);
+			//writeString_P(" ");
+			//WriteFormattedNumber(tooCloseRight);
+			//writeString_P(" ");
+			//WriteFormattedNumber(tooCloseLeft);
+			//writeString_P("\n");
+
+			memset(sensorState, 0, sizeof(sensorState));
+			lastState = 2;
+
+			if (dir)
+			{
+				isRotating = 1;
+				stop();
+				rotate(100, dir, 60, NON_BLOCKING);
+				waitForTransmitComplete();
+				lastState = 3;
+			}
 		}
-	}
-	else if(drive_status.movementComplete)
-	{
-		isRotating = 0;
-		stop();
-		changeDirection(FWD);
-		waitForTransmitComplete();
-		moveAtSpeed(100, 100);
-		waitForTransmitComplete();
-		lastState = 4;
-	}
-	else
-	{
-		task_checkINT0();
-		task_I2CTWI();
+		else if (drive_status.movementComplete)
+		{
+			isRotating = 0;
+			stop();
+			changeDirection(FWD);
+			waitForTransmitComplete();
+			moveAtSpeed(100, 100);
+			waitForTransmitComplete();
+			lastState = 4;
+		}
+		else
+		{
+			task_checkINT0();
+			task_I2CTWI();
+		}
 	}
 }
 
@@ -177,11 +180,8 @@ int main(void)
 	{		
 		ProcessStartStop();
 		ProcessDriving();
-		if (isDriving)
-		{
-			ProcessDistanceSensors();
-			ProcessRotation();
-		}
+		ProcessDistanceSensors();
+		ProcessRotation();
 
 		setCursorPosLCD(0, 0);
 		writeIntegerLCD(lastState, 10);
