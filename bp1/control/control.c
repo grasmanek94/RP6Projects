@@ -102,8 +102,8 @@ void ProcessRotation()
 	if (!isRotating)
 	{
 		uint16_t min_dist_var = 200;
-		uint8_t tooCloseRight = (sensorState[ESL_AR] > min_dist_var || sensorState[ESL_VR] > min_dist_var) ? 1 : 0;
-		uint8_t tooCloseLeft = (sensorState[ESL_AL] > min_dist_var || sensorState[ESL_VL] > min_dist_var) ? 1 : 0;
+		uint8_t tooCloseRight = sensorState[ESL_AR] > min_dist_var || sensorState[ESL_VR] > min_dist_var;
+		uint8_t tooCloseLeft = sensorState[ESL_AL] > min_dist_var || sensorState[ESL_VL] > min_dist_var;
 		uint8_t dir = (tooCloseRight == tooCloseLeft) ? 0 : (tooCloseLeft ? RIGHT : LEFT);
 
 		//WriteFormattedNumber(sensorState[0]);
