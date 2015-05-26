@@ -1,4 +1,4 @@
-﻿Build started 26-5-2015 10:27:23.
+﻿Build started 26-5-2015 12:20:41.
      1>Project "C:\Programs\RP6\RP6Projects\bp1\bp1.vcxproj" on node 2 (Build target(s)).
      1>Build:
          .\base\BUILDUPLOAD.bat
@@ -114,8 +114,8 @@
          Connected to:
          "RP6 Robot Base"
          FW Version: 1.4
-         Battery Voltage: 8.33V
-         Voltage read: 8.33V
+         Battery Voltage: 8.57V
+         Voltage read: 8.57V
          Battery Voltage is in acceptable range.
          Setup High Speed...
          Speed ACK!
@@ -160,7 +160,7 @@
          Task completed successfully!
          Size: 8438 bytes, CRC16: 0xA3A5
          File: base.hex
-         Time: 1389ms
+         Time: 1376ms
          Upload complete!
          Trying to close port...
          COM CLOSED!
@@ -171,4 +171,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:15.11
+Time Elapsed 00:00:05.05

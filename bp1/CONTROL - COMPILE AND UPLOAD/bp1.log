@@ -1,4 +1,4 @@
-﻿Build started 26-5-2015 12:11:58.
+﻿Build started 26-5-2015 12:24:05.
      1>Project "C:\Programs\RP6\RP6Projects\bp1\bp1.vcxproj" on node 2 (Build target(s)).
      1>Build:
          .\control\BUILDUPLOAD.bat
@@ -36,10 +36,10 @@
          ../common/someCommonLib.h:3:1: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           int someCommonFunction();
           ^
-         control.c:11:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+         control.c:12:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           void ProcessStartStop()
                ^
-         control.c:35:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+         control.c:36:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           void ProcessDriving()
                ^
          control.c: In function 'ProcessDriving':
@@ -47,10 +47,10 @@
              waitForTransmitComplete();
              ^
          control.c: At top level:
-         control.c:68:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+         control.c:69:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           void ProcessDistanceSensors()
                ^
-         control.c:82:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+         control.c:83:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           void ProcessRotation()
                ^
          
@@ -97,10 +97,10 @@
          ----------------
          Device: atmega32
          
-         Program:    6084 bytes (18.6% Full)
+         Program:    6082 bytes (18.6% Full)
          (.text + .data + .bootloader)
          
-         Data:        270 bytes (13.2% Full)
+         Data:        271 bytes (13.2% Full)
          (.data + .bss + .noinit)
          
          
@@ -128,7 +128,7 @@
          Bootloader message:
          Upload in progress...
          Baudrate is set to: 38400
-         Uploading new program to target device; Range: 0 - 17c4
+         Uploading new program to target device; Range: 0 - 17c2
          Connected to target!
          Target ID received:
          RP6: Board ID 2, Firmware Version 1.4, Board Rev.: 3
@@ -138,36 +138,36 @@
          Change baudrate of USB0 | RP6 USB Interface | ARV8J61W from 38400 to 500000 OK!
          Setup OK!
          Upload in progress...
-         Write 256b @0 ; CRC16: 0xED5
-         Write 256b @256 ; CRC16: 0xF667
-         Write 256b @512 ; CRC16: 0xAA80
-         Write 256b @768 ; CRC16: 0xC5A5
-         Write 256b @1024 ; CRC16: 0xA2CA
-         Write 256b @1280 ; CRC16: 0x7982
-         Write 256b @1536 ; CRC16: 0xD85
-         Write 256b @1792 ; CRC16: 0xE787
-         Write 256b @2048 ; CRC16: 0x28AF
-         Write 256b @2304 ; CRC16: 0x9F68
-         Write 256b @2560 ; CRC16: 0x2FF5
-         Write 256b @2816 ; CRC16: 0xC77A
-         Write 256b @3072 ; CRC16: 0x77D7
-         Write 256b @3328 ; CRC16: 0x5737
-         Write 256b @3584 ; CRC16: 0xEC3D
-         Write 256b @3840 ; CRC16: 0xDDF5
-         Write 256b @4096 ; CRC16: 0xAFEB
-         Write 256b @4352 ; CRC16: 0x8F7F
-         Write 256b @4608 ; CRC16: 0xCB01
-         Write 256b @4864 ; CRC16: 0x6A2E
-         Write 256b @5120 ; CRC16: 0xEE81
-         Write 256b @5376 ; CRC16: 0x6D0E
-         Write 256b @5632 ; CRC16: 0xFF8B
-         Write 256b @5888 ; CRC16: 0x3531
+         Write 256b @0 ; CRC16: 0xBCE3
+         Write 256b @256 ; CRC16: 0x7625
+         Write 256b @512 ; CRC16: 0xADAB
+         Write 256b @768 ; CRC16: 0xA37B
+         Write 256b @1024 ; CRC16: 0xCC67
+         Write 256b @1280 ; CRC16: 0x54A8
+         Write 256b @1536 ; CRC16: 0xB57B
+         Write 256b @1792 ; CRC16: 0xE032
+         Write 256b @2048 ; CRC16: 0xF9A0
+         Write 256b @2304 ; CRC16: 0xCA3F
+         Write 256b @2560 ; CRC16: 0xB40F
+         Write 256b @2816 ; CRC16: 0xF312
+         Write 256b @3072 ; CRC16: 0x2AC0
+         Write 256b @3328 ; CRC16: 0xD380
+         Write 256b @3584 ; CRC16: 0x9850
+         Write 256b @3840 ; CRC16: 0x6F45
+         Write 256b @4096 ; CRC16: 0x4C39
+         Write 256b @4352 ; CRC16: 0xBFCC
+         Write 256b @4608 ; CRC16: 0x43F3
+         Write 256b @4864 ; CRC16: 0x482F
+         Write 256b @5120 ; CRC16: 0x7C5E
+         Write 256b @5376 ; CRC16: 0xC72B
+         Write 256b @5632 ; CRC16: 0x5862
+         Write 256b @5888 ; CRC16: 0x334F
          Change baudrate of USB0 | RP6 USB Interface | ARV8J61W from 500000 to 38400 OK!
          Bootloader message:
          Task completed successfully!
-         Size: 6084 bytes, CRC16: 0x86E1
+         Size: 6082 bytes, CRC16: 0x6070
          File: control.hex
-         Time: 1091ms
+         Time: 1102ms
          Upload complete!
          Trying to close port...
          COM CLOSED!
@@ -178,4 +178,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.83
+Time Elapsed 00:00:04.86

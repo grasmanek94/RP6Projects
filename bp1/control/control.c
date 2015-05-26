@@ -7,7 +7,8 @@
 uint8_t isDriving = 0;
 uint8_t shouldDrive = 0;
 uint8_t isRotating = 0;
-uint8_t lastState = 0;
+uint8_t lastState = 9;
+
 void ProcessStartStop()
 {
 	if (!isStopwatch7Running())
@@ -38,19 +39,19 @@ void ProcessDriving()
 	{
 		isDriving = shouldDrive;
 		if (shouldDrive && !isRotating)
-		{
-			lastState = 1;
+		{			
 			stop();
 			changeDirection(FWD);
 			waitForTransmitComplete();
 			moveAtSpeed(255, 255);
 			waitForTransmitComplete();
+			lastState = 1;
 		}
 		else if(!shouldDrive)
-		{
-			lastState = 0;
+		{		
 			isRotating = 0;
 			stop();	
+			lastState = 0;
 		}
 	}
 }
@@ -88,24 +89,25 @@ void ProcessRotation()
 		uint8_t dir = (tooCloseRight == tooCloseLeft) ? 0 : (tooCloseLeft ? RIGHT : LEFT);
 		memset(sensorState, 0, sizeof(sensorState));
 		lastState = 2;
+
 		if (dir)
 		{
-			lastState = 3;
 			isRotating = 1;
 			stop();
-			rotate(255, dir, 45, NON_BLOCKING);
+			rotate(255, dir, 60, NON_BLOCKING);
 			waitForTransmitComplete();
+			lastState = 3;
 		}
 	}
 	else if(drive_status.movementComplete)
 	{
-		lastState = 4;
 		isRotating = 0;
 		stop();
 		changeDirection(FWD);
 		waitForTransmitComplete();
 		moveAtSpeed(255, 255);
 		waitForTransmitComplete();
+		lastState = 4;
 	}
 }
 
