@@ -43,7 +43,7 @@ void ProcessDriving()
 			stop();
 			changeDirection(FWD);
 			waitForTransmitComplete();
-			moveAtSpeed(255, 255);
+			moveAtSpeed(100, 100);
 			waitForTransmitComplete();
 			lastState = 1;
 		}
@@ -58,35 +58,67 @@ void ProcessDriving()
 
 enum ESensorLocation
 {
-	ESL_AL = 0,//achter links
-	ESL_AR = 1,//achter rechts
-	ESL_VR = 2,//voor	rechts
-	ESL_VL = 3 //voor	links
+	ESL_AR = 0,//achter 
+	ESL_AL = 1,//achter 
+	ESL_VL = 2,//voor	
+	ESL_VR = 3 //voor	
 };
 
-uint8_t sensorState[4];
+uint16_t sensorState[4];
 
 void ProcessDistanceSensors()
 {
 	if (!isRotating)
 	{
-		for (int i = 2; i < 6; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
-			if (!sensorState[i - 2])
-			{	//read & set only when sensor isn't already 'too close', let someone else reset the state
-				sensorState[i - 2] = readADC(i) < 300;
-			}
+			sensorState[i] = readADC(i + 2);
 		}
 	}
+}
+
+void WriteFormattedNumber(int val)
+{
+	if (val < 1000)
+	{
+		if (val > 99)
+		{
+			writeString_P("0");
+		}
+		else if (val > 9)
+		{
+			writeString_P("00");
+		}
+		else
+		{
+			writeString_P("000");
+		}
+	}
+	writeInteger(val, DEC);
 }
 
 void ProcessRotation()
 {
 	if (!isRotating)
 	{
-		uint8_t tooCloseRight = sensorState[ESL_AL] || sensorState[ESL_VL];
-		uint8_t tooCloseLeft = sensorState[ESL_AR] || sensorState[ESL_VR];
+		uint16_t min_dist_var = 200;
+		uint8_t tooCloseRight = (sensorState[ESL_AR] > min_dist_var || sensorState[ESL_VR] > min_dist_var) ? 1 : 0;
+		uint8_t tooCloseLeft = (sensorState[ESL_AL] > min_dist_var || sensorState[ESL_VL] > min_dist_var) ? 1 : 0;
 		uint8_t dir = (tooCloseRight == tooCloseLeft) ? 0 : (tooCloseLeft ? RIGHT : LEFT);
+
+		//WriteFormattedNumber(sensorState[0]);
+		//writeString_P(" ");
+		//WriteFormattedNumber(sensorState[1]);
+		//writeString_P(" ");
+		//WriteFormattedNumber(sensorState[2]);
+		//writeString_P(" ");
+		//WriteFormattedNumber(sensorState[3]);
+		//writeString_P(" ");
+		//WriteFormattedNumber(tooCloseRight);
+		//writeString_P(" ");
+		//WriteFormattedNumber(tooCloseLeft);
+		//writeString_P("\n");
+
 		memset(sensorState, 0, sizeof(sensorState));
 		lastState = 2;
 
@@ -94,7 +126,7 @@ void ProcessRotation()
 		{
 			isRotating = 1;
 			stop();
-			rotate(255, dir, 60, NON_BLOCKING);
+			rotate(100, dir, 60, NON_BLOCKING);
 			waitForTransmitComplete();
 			lastState = 3;
 		}
@@ -105,9 +137,14 @@ void ProcessRotation()
 		stop();
 		changeDirection(FWD);
 		waitForTransmitComplete();
-		moveAtSpeed(255, 255);
+		moveAtSpeed(100, 100);
 		waitForTransmitComplete();
 		lastState = 4;
+	}
+	else
+	{
+		task_checkINT0();
+		task_I2CTWI();
 	}
 }
 
@@ -137,7 +174,7 @@ int main(void)
 	I2CTWI_transmit3Bytes(I2C_RP6_BASE_ADR, 0, CMD_SET_WDT_RQ, true);
 
 	while (true) 
-	{
+	{		
 		ProcessStartStop();
 		ProcessDriving();
 		if (isDriving)

@@ -1,4 +1,4 @@
-﻿Build started 26-5-2015 12:24:05.
+﻿Build started 26-5-2015 12:46:21.
      1>Project "C:\Programs\RP6\RP6Projects\bp1\bp1.vcxproj" on node 2 (Build target(s)).
      1>Build:
          .\control\BUILDUPLOAD.bat
@@ -50,7 +50,7 @@
          control.c:69:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           void ProcessDistanceSensors()
                ^
-         control.c:83:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+         control.c:100:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
           void ProcessRotation()
                ^
          
@@ -97,10 +97,10 @@
          ----------------
          Device: atmega32
          
-         Program:    6082 bytes (18.6% Full)
+         Program:    6172 bytes (18.8% Full)
          (.text + .data + .bootloader)
          
-         Data:        271 bytes (13.2% Full)
+         Data:        275 bytes (13.4% Full)
          (.data + .bss + .noinit)
          
          
@@ -128,7 +128,7 @@
          Bootloader message:
          Upload in progress...
          Baudrate is set to: 38400
-         Uploading new program to target device; Range: 0 - 17c2
+         Uploading new program to target device; Range: 0 - 181c
          Connected to target!
          Target ID received:
          RP6: Board ID 2, Firmware Version 1.4, Board Rev.: 3
@@ -138,36 +138,37 @@
          Change baudrate of USB0 | RP6 USB Interface | ARV8J61W from 38400 to 500000 OK!
          Setup OK!
          Upload in progress...
-         Write 256b @0 ; CRC16: 0xBCE3
-         Write 256b @256 ; CRC16: 0x7625
-         Write 256b @512 ; CRC16: 0xADAB
-         Write 256b @768 ; CRC16: 0xA37B
-         Write 256b @1024 ; CRC16: 0xCC67
-         Write 256b @1280 ; CRC16: 0x54A8
-         Write 256b @1536 ; CRC16: 0xB57B
-         Write 256b @1792 ; CRC16: 0xE032
-         Write 256b @2048 ; CRC16: 0xF9A0
-         Write 256b @2304 ; CRC16: 0xCA3F
-         Write 256b @2560 ; CRC16: 0xB40F
-         Write 256b @2816 ; CRC16: 0xF312
-         Write 256b @3072 ; CRC16: 0x2AC0
-         Write 256b @3328 ; CRC16: 0xD380
-         Write 256b @3584 ; CRC16: 0x9850
-         Write 256b @3840 ; CRC16: 0x6F45
-         Write 256b @4096 ; CRC16: 0x4C39
-         Write 256b @4352 ; CRC16: 0xBFCC
-         Write 256b @4608 ; CRC16: 0x43F3
-         Write 256b @4864 ; CRC16: 0x482F
-         Write 256b @5120 ; CRC16: 0x7C5E
-         Write 256b @5376 ; CRC16: 0xC72B
-         Write 256b @5632 ; CRC16: 0x5862
-         Write 256b @5888 ; CRC16: 0x334F
+         Write 256b @0 ; CRC16: 0xF422
+         Write 256b @256 ; CRC16: 0x36A
+         Write 256b @512 ; CRC16: 0xAD7B
+         Write 256b @768 ; CRC16: 0xE4E0
+         Write 256b @1024 ; CRC16: 0x1E03
+         Write 256b @1280 ; CRC16: 0xB34
+         Write 256b @1536 ; CRC16: 0x75E2
+         Write 256b @1792 ; CRC16: 0xBF1C
+         Write 256b @2048 ; CRC16: 0xFFF8
+         Write 256b @2304 ; CRC16: 0x8B1F
+         Write 256b @2560 ; CRC16: 0xD116
+         Write 256b @2816 ; CRC16: 0x7D29
+         Write 256b @3072 ; CRC16: 0x82E5
+         Write 256b @3328 ; CRC16: 0x8468
+         Write 256b @3584 ; CRC16: 0xEA0D
+         Write 256b @3840 ; CRC16: 0x67E8
+         Write 256b @4096 ; CRC16: 0x6658
+         Write 256b @4352 ; CRC16: 0x1EB9
+         Write 256b @4608 ; CRC16: 0xA674
+         Write 256b @4864 ; CRC16: 0xB69E
+         Write 256b @5120 ; CRC16: 0x67B
+         Write 256b @5376 ; CRC16: 0x36FC
+         Write 256b @5632 ; CRC16: 0x9BCE
+         Write 256b @5888 ; CRC16: 0x2CCF
+         Write 256b @6144 ; CRC16: 0x2841
          Change baudrate of USB0 | RP6 USB Interface | ARV8J61W from 500000 to 38400 OK!
          Bootloader message:
          Task completed successfully!
-         Size: 6082 bytes, CRC16: 0x6070
+         Size: 6172 bytes, CRC16: 0x6BE8
          File: control.hex
-         Time: 1102ms
+         Time: 1122ms
          Upload complete!
          Trying to close port...
          COM CLOSED!
@@ -178,4 +179,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.86
+Time Elapsed 00:00:04.92
