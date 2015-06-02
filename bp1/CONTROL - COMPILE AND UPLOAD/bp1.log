@@ -1,4 +1,4 @@
-﻿Build started 1-6-2015 13:05:25.
+﻿Build started 2-6-2015 10:23:10.
      1>Project "D:\Development\RP6\RP6Projects\bp1\bp1.vcxproj" on node 2 (Build target(s)).
      1>Build:
          .\control\BUILDUPLOAD.bat
@@ -118,13 +118,65 @@
          Upload Program...
          --> Hexfile Path: D:\Development\RP6\RP6Projects\bp1\control\control.hex
          Listing all serial ports...
-         ### Error, could not find specified comport: 
-         Please check the used portname!
+         PORT: USB0 | RP6 USB Interface | ARV87EZH
+         Trying to open port: USB0 | RP6 USB Interface | ARV87EZH
+         COM OPEN!
+         USB0 | RP6 USB Interface | ARV87EZH open @38400baud
+         Set Comport...
+         Baudrate is set to: 38400
+         OK!
+         Bootloader message:
+         Upload in progress...
+         Baudrate is set to: 38400
+         Uploading new program to target device; Range: 0 - 189e
+         Connected to target!
+         Target ID received:
+         RP6: Board ID 2, Firmware Version 1.4, Board Rev.: 3
+         ["RP6 Control", 2, MEGA32, 0, 30720, true]
+         Setup High Speed...
+         Speed ACK!
+         Change baudrate of USB0 | RP6 USB Interface | ARV87EZH from 38400 to 500000 OK!
+         Setup OK!
+         Upload in progress...
+         Write 256b @0 ; CRC16: 0xCBDF
+         Write 256b @256 ; CRC16: 0x8CB
+         Write 256b @512 ; CRC16: 0xEE29
+         Write 256b @768 ; CRC16: 0x85FB
+         Write 256b @1024 ; CRC16: 0xEA75
+         Write 256b @1280 ; CRC16: 0x9B87
+         Write 256b @1536 ; CRC16: 0x67B6
+         Write 256b @1792 ; CRC16: 0xE4C2
+         Write 256b @2048 ; CRC16: 0xC92F
+         Write 256b @2304 ; CRC16: 0x6FAD
+         Write 256b @2560 ; CRC16: 0x9186
+         Write 256b @2816 ; CRC16: 0x1C48
+         Write 256b @3072 ; CRC16: 0x8536
+         Write 256b @3328 ; CRC16: 0x2D18
+         Write 256b @3584 ; CRC16: 0xFC60
+         Write 256b @3840 ; CRC16: 0x81E
+         Write 256b @4096 ; CRC16: 0x8325
+         Write 256b @4352 ; CRC16: 0xD95
+         Write 256b @4608 ; CRC16: 0x77A8
+         Write 256b @4864 ; CRC16: 0x95C5
+         Write 256b @5120 ; CRC16: 0xBB62
+         Write 256b @5376 ; CRC16: 0xF959
+         Write 256b @5632 ; CRC16: 0xD528
+         Write 256b @5888 ; CRC16: 0x63F4
+         Write 256b @6144 ; CRC16: 0xF0CD
+         Change baudrate of USB0 | RP6 USB Interface | ARV87EZH from 500000 to 38400 OK!
+         Bootloader message:
+         Task completed successfully!
+         Size: 6302 bytes, CRC16: 0x397A
+         File: control.hex
+         Time: 1128ms
+         Upload complete!
          Trying to close port...
-         Exit code: 1
+         COM CLOSED!
+         Port Closed!
+         Exit code: 0 - All done.
          ---------------------------------------------
      1>Done Building Project "D:\Development\RP6\RP6Projects\bp1\bp1.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.49
+Time Elapsed 00:00:04.79
