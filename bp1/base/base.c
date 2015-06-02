@@ -25,9 +25,8 @@
 /*****************************************************************************/
 // Includes:
 
-#include "RP6RobotBaseLib.h" 	
-
-#include "RP6I2CslaveTWI.h"     // Include the I²C-Bus Slave Library
+#include <RP6RobotBaseLib.h> 	
+#include <RP6I2CslaveTWI.h>     // Include the I²C-Bus Slave Library
 
 /*****************************************************************************/
 

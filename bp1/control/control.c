@@ -108,18 +108,18 @@ void ProcessRotation()
 			uint8_t tooCloseLeft = sensorState[ESL_AL] > min_dist_var || sensorState[ESL_VL] > min_dist_var;
 			uint8_t dir = (tooCloseRight == tooCloseLeft) ? 0 : (tooCloseLeft ? RIGHT : LEFT);
 
-			//WriteFormattedNumber(sensorState[0]);
-			//writeString_P(" ");
-			//WriteFormattedNumber(sensorState[1]);
-			//writeString_P(" ");
-			//WriteFormattedNumber(sensorState[2]);
-			//writeString_P(" ");
-			//WriteFormattedNumber(sensorState[3]);
-			//writeString_P(" ");
-			//WriteFormattedNumber(tooCloseRight);
-			//writeString_P(" ");
-			//WriteFormattedNumber(tooCloseLeft);
-			//writeString_P("\n");
+			WriteFormattedNumber(sensorState[ESL_AR]);
+			writeString_P(" ");
+			WriteFormattedNumber(sensorState[ESL_VR]);
+			writeString_P(" ");
+			WriteFormattedNumber(sensorState[ESL_AL]);
+			writeString_P(" ");
+			WriteFormattedNumber(sensorState[ESL_VL]);
+			writeString_P(" ");
+			WriteFormattedNumber(tooCloseRight);
+			writeString_P(" ");
+			WriteFormattedNumber(tooCloseLeft);
+			writeString_P("\n");
 
 			memset(sensorState, 0, sizeof(sensorState));
 			lastState = 2;
