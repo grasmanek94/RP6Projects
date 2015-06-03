@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="assignment_leds">
+      <UniqueIdentifier>{4eec3382-15b5-4937-b36f-7faa80c1387e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assignment_leds_test">
+      <UniqueIdentifier>{33ed3085-828c-4d4d-b8bb-5c7ac2524f80}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="assignment_leds\level_check.h">
+      <Filter>assignment_leds</Filter>
+    </ClInclude>
+    <ClInclude Include="assignment_leds_test\level_check_test.h">
+      <Filter>assignment_leds_test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assignment_leds\makefile">
+      <Filter>assignment_leds</Filter>
+    </None>
+    <None Include="assignment_leds\BUILDUPLOAD.BAT">
+      <Filter>assignment_leds</Filter>
+    </None>
+    <None Include="assignment_leds_test\makefile">
+      <Filter>assignment_leds_test</Filter>
+    </None>
+    <None Include="assignment_leds_test\BUILDUPLOAD.BAT">
+      <Filter>assignment_leds_test</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="assignment_leds\level_check.c">
+      <Filter>assignment_leds</Filter>
+    </ClCompile>
+    <ClCompile Include="assignment_leds\main.c">
+      <Filter>assignment_leds</Filter>
+    </ClCompile>
+    <ClCompile Include="assignment_leds_test\main.c">
+      <Filter>assignment_leds_test</Filter>
+    </ClCompile>
+    <ClCompile Include="assignment_leds_test\level_check_test.c">
+      <Filter>assignment_leds_test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
