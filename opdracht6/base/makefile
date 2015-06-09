@@ -16,7 +16,7 @@ SRC=$(wildcard *.c) $(wildcard */*.c) $(wildcard */*/*.c) $(wildcard */*/*/*.c) 
 
 #SRC += $(RP6_LIB_PATH)/RP6control/RP6ControlLib.c
 SRC += $(RP6_LIB_PATH)/RP6common/RP6uart.c
-#SRC += $(RP6_LIB_PATH)/RP6common/RP6I2CslaveTWI.c
+SRC += $(RP6_LIB_PATH)/RP6common/RP6I2CslaveTWI.c
 #SRC += $(RP6_LIB_PATH)/RP6common/RP6I2CmasterTWI.c
 SRC += $(RP6_LIB_PATH)/RP6base/RP6RobotBaseLib.c
 

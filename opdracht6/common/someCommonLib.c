@@ -1,4 +1,4 @@
-int someCommonFunction()
+int someCommonFunction(void)
 {
 	return 1;
 }

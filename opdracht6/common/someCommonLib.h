@@ -1,4 +1,4 @@
 #ifndef someCommonLib_HEADER
 #define someCommonLib_HEADER
-int someCommonFunction();
+int someCommonFunction(void);
 #endif

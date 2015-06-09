@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="BASE - COMPILE AND UPLOAD|Win32">
@@ -14,11 +14,16 @@
     <ClCompile Include="base\base.c" />
     <ClCompile Include="common\someCommonLib.c" />
     <ClCompile Include="control\control.c" />
+    <ClCompile Include="control\ringbuf.c" />
+    <ClCompile Include="control\RP6Control_I2CMasterLib.c" />
+    <ClCompile Include="test_ringbuf.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\base.h" />
     <ClInclude Include="common\someCommonLib.h" />
     <ClInclude Include="control\control.h" />
+    <ClInclude Include="control\ringbuf.h" />
+    <ClInclude Include="control\RP6Control_I2CMasterLib.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="base\BUILDUPLOAD.bat" />
