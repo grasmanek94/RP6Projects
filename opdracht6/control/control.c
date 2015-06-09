@@ -103,6 +103,7 @@ void ProcessDisplay()
 		writeStringLCD(" E");
 		writeIntegerLCD((int)(error * 100.0), 10);
 		//2 left
+
 		setCursorPosLCD(1, 0);
 
 		writeIntegerLCD(movingAverage[0][insertedElems], 10);
