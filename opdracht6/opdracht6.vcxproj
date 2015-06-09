@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="BASE - COMPILE AND UPLOAD|Win32">
@@ -11,24 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="assignment_leds\led_values_updater.h" />
-    <ClInclude Include="assignment_leds\level_check.h" />
-    <ClInclude Include="assignment_leds_test\led_values_updater_test.h" />
-    <ClInclude Include="assignment_leds_test\level_check_test.h" />
+    <ClCompile Include="base\base.c" />
+    <ClCompile Include="common\someCommonLib.c" />
+    <ClCompile Include="control\control.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assignment_leds\BUILDUPLOAD.BAT" />
-    <None Include="assignment_leds\makefile" />
-    <None Include="assignment_leds_test\BUILDUPLOAD.BAT" />
-    <None Include="assignment_leds_test\makefile" />
+    <ClInclude Include="base\base.h" />
+    <ClInclude Include="common\someCommonLib.h" />
+    <ClInclude Include="control\control.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assignment_leds\led_values_updater.c" />
-    <ClCompile Include="assignment_leds\level_check.c" />
-    <ClCompile Include="assignment_leds\main.c" />
-    <ClCompile Include="assignment_leds_test\led_values_updater_test.c" />
-    <ClCompile Include="assignment_leds_test\level_check_test.c" />
-    <ClCompile Include="assignment_leds_test\main.c" />
+    <None Include="base\BUILDUPLOAD.bat" />
+    <None Include="base\makefile" />
+    <None Include="control\BUILDUPLOAD.bat" />
+    <None Include="control\makefile" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{37A42495-D54F-4BA1-9C69-788A3AFFD401}</ProjectGuid>
@@ -59,14 +55,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='BASE - COMPILE AND UPLOAD|Win32'">
-    <NMakeBuildCommandLine>.\assignment_leds\BUILDUPLOAD.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>.\base\BUILDUPLOAD.bat</NMakeBuildCommandLine>
     <IncludePath>$(AVR32_HOME)\RobotLoader\;$(AVR32_HOME)\RobotLoader\RP6Lib;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6base;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6common;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6control;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6control_M256_WIFI;.\common;$(AVR32_HOME)\avr\include;$(IncludePath)</IncludePath>
-    <NMakeReBuildCommandLine>.\assignment_leds\BUILDUPLOAD.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine>.\base\BUILDUPLOAD.bat</NMakeReBuildCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CONTROL - COMPILE AND UPLOAD|Win32'">
-    <NMakeBuildCommandLine>.\assignment_leds_test\BUILDUPLOAD.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>.\control\BUILDUPLOAD.bat</NMakeBuildCommandLine>
     <IncludePath>$(AVR32_HOME)\RobotLoader\;$(AVR32_HOME)\RobotLoader\RP6Lib;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6base;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6common;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6control;$(AVR32_HOME)\RobotLoader\RP6Lib\RP6control_M256_WIFI;.\common;$(AVR32_HOME)\avr\include;$(IncludePath)</IncludePath>
-    <NMakeReBuildCommandLine>.\assignment_leds_test\BUILDUPLOAD.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine>.\control\BUILDUPLOAD.bat</NMakeReBuildCommandLine>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

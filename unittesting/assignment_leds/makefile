@@ -17,7 +17,8 @@ TARGET = main
 ###############################################################################
 # Specify relative path to RP6 library files here.
 # This is "../../RP6Lib" or "../RP6Lib" usually.
-RP6_LIB_PATH=$(AVR32_HOME)/RobotLoader/RP6Lib
+
+RP6_LIB_PATH= ../../RP6Lib
 RP6_LIB_PATH_CONTROL= $(RP6_LIB_PATH)/RP6control
 RP6_LIB_PATH_COMMON= $(RP6_LIB_PATH)/RP6common
 
@@ -31,6 +32,7 @@ EXTRAINCDIRS = $(RP6_LIB_PATH) $(RP6_LIB_PATH_OTHERS)
 # Main Source file is _automatically_ added here:
 SRC = $(TARGET).c
 SRC += level_check.c
+SRC += led_values_updater.c
 
 SRC += $(RP6_LIB_PATH_CONTROL)/RP6ControlLib.c
 SRC += $(RP6_LIB_PATH_COMMON)/RP6uart.c

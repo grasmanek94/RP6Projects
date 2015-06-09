@@ -15,6 +15,12 @@
     <ClInclude Include="assignment_leds_test\level_check_test.h">
       <Filter>assignment_leds_test</Filter>
     </ClInclude>
+    <ClInclude Include="assignment_leds\led_values_updater.h">
+      <Filter>assignment_leds</Filter>
+    </ClInclude>
+    <ClInclude Include="assignment_leds_test\led_values_updater_test.h">
+      <Filter>assignment_leds_test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assignment_leds\makefile">
@@ -41,6 +47,12 @@
       <Filter>assignment_leds_test</Filter>
     </ClCompile>
     <ClCompile Include="assignment_leds_test\level_check_test.c">
+      <Filter>assignment_leds_test</Filter>
+    </ClCompile>
+    <ClCompile Include="assignment_leds\led_values_updater.c">
+      <Filter>assignment_leds</Filter>
+    </ClCompile>
+    <ClCompile Include="assignment_leds_test\led_values_updater_test.c">
       <Filter>assignment_leds_test</Filter>
     </ClCompile>
   </ItemGroup>

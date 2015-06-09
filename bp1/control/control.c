@@ -25,7 +25,7 @@ void ProcessStartStop()
 		if (micpeak > 768)
 		{
 			dischargePeakDetector();
-			shouldDrive ^= 1;
+			shouldDrive = !shouldDrive;
 		}
 	
 		writeInteger(micpeak, 10);

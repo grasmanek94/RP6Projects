@@ -1,12 +1,12 @@
-﻿Build started 2-6-2015 11:13:12.
+﻿Build started 9-6-2015 10:55:15.
      1>Project "D:\Development\RP6\RP6Projects\unittesting\unittesting.vcxproj" on node 2 (Build target(s)).
      1>Build:
          .\assignment_leds_test\BUILDUPLOAD.bat
-         make: *** No rule to make target 'clean'.  Stop.
-         make: *** No rule to make target 'all'.  Stop.
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.MakeFile.Targets(42,5): error MSB3073: The command ".\assignment_leds_test\BUILDUPLOAD.bat" exited with code 2.
+         '.\assignment_leds_test\BUILDUPLOAD.bat' is not recognized as an internal or external command,
+         operable program or batch file.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.MakeFile.Targets(38,5): error MSB3073: The command ".\assignment_leds_test\BUILDUPLOAD.bat" exited with code 9009.
      1>Done Building Project "D:\Development\RP6\RP6Projects\unittesting\unittesting.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.05
+Time Elapsed 00:00:00.62

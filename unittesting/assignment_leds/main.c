@@ -25,7 +25,7 @@
 #include "RP6ControlLib.h" 		// The RP6 Control Library.
 								// Always needs to be included!
 #include "level_check.h"
-//#include "led_values_updater.h"
+#include "led_values_updater.h"
 
 /*****************************************************************************/
 // Main function - The program starts here:
@@ -45,10 +45,6 @@
   * \param new_led_values_ptr  : Output for light value of the led lights after being updated
   *
   */
-void led_values_update(uint8_t led_values, uint8_t* new_led_values_ptr)
-{
-	//TODO: create implementation
-}
 
 int main(void)
 {
