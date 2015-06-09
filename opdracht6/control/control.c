@@ -96,13 +96,13 @@ void ProcessDisplay()
 
 		setCursorPosLCD(0, 0);
 
-		writeStringLCD("L");
+		writeStringLCD("M:");
 		writeIntegerLCD(powerLinks, 10);
-		writeStringLCD(" R");
+		writeStringLCD("/");
 		writeIntegerLCD(powerRechts, 10);
 		writeStringLCD(" E");
 		writeIntegerLCD((int)(error * 100.0), 10);
-		
+		//2 left
 		setCursorPosLCD(1, 0);
 
 		writeIntegerLCD(movingAverage[0][insertedElems], 10);
@@ -112,6 +112,7 @@ void ProcessDisplay()
 		writeIntegerLCD(movingAverage[1][insertedElems], 10);
 		writeStringLCD("/");
 		writeIntegerLCD(previousAverage[1], 10);
+		//1 left
 	}
 }
 
