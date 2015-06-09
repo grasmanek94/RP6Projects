@@ -93,31 +93,34 @@ void ProcessDisplay()
 		setStopwatch1(0);
 
 		clearLCD();
+
 		setCursorPosLCD(0, 0);
-		//writeStringLCD("V: ");
-		//writeIntegerLCD(movingAverage[0][insertedElems], 10);
-		//writeStringLCD(" M: ");
-		//writeIntegerLCD(previousAverage[0], 10);
 
-		writeStringLCD("L: ");
+		writeStringLCD("L");
 		writeIntegerLCD(powerLinks, 10);
-		writeStringLCD(" R: ");
+		writeStringLCD(" R");
 		writeIntegerLCD(powerRechts, 10);
-
-		setCursorPosLCD(1, 0);
-		writeStringLCD("E: ");
+		writeStringLCD(" E");
 		writeIntegerLCD((int)(error * 100.0), 10);
-		//writeStringLCD(" M: ");
-		//writeIntegerLCD(previousAverage[1], 10);
+		
+		setCursorPosLCD(1, 0);
+
+		writeIntegerLCD(movingAverage[0][insertedElems], 10);
+		writeStringLCD("/");
+		writeIntegerLCD(previousAverage[0], 10);
+		writeStringLCD(" ");
+		writeIntegerLCD(movingAverage[1][insertedElems], 10);
+		writeStringLCD("/");
+		writeIntegerLCD(previousAverage[1], 10);
 	}
 }
 
 void ProcessDriving()
 {
-	int gewensteAfstand = 350;
-	float verschuiving = 0.22;
-	error = (verschuiving - ((float)(gewensteAfstand - previousAverage[1]) / 600.0));
-	if ((int)(error*100.0) > 22)//otherwise it doesnt work
+	const int wantedDistance = 350;
+	const float verschuiving = 0.22;
+	error = (verschuiving - ((float)(wantedDistance - previousAverage[1]) / 600.0));
+	if ((int)(error*100.0) > 22)//otherwise it doesnt work -- if(error > 0.22)
 	{
 		error = verschuiving;
 	}
@@ -128,8 +131,8 @@ void ProcessDriving()
 	float voor = (float)previousAverage[1];
 	float achter = (float)previousAverage[0];
 
-	powerRechts = (int)(127.0 * (voor / achter) * (1.0 + error));//350 300 = 0.9 = 110
-	powerLinks = (int)(127.0 * (achter / voor) * (1.0 - error));//300 350 = 1.1 = 150
+	powerRechts = (int)(127.0 * (voor / achter) * (1.0 + error));
+	powerLinks = (int)(127.0 * (achter / voor) * (1.0 - error));
 	
 	moveAtSpeed(powerLinks, powerRechts);
 }
