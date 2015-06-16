@@ -1,0 +1,8 @@
+﻿<Properties StartupItem="bp2.vcxproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="BASE - COMPILE AND UPLOAD|Win32" />
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
