@@ -1,11 +1,9 @@
 #include <RP6ControlLib.h>
-#include <someCommonLib.h>
 #include "control.h"
 
 int main(void)
 {
 	setup();
-	someCommonFunction();
 	while(true) 
 	{
 		loop();

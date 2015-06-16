@@ -21,23 +21,26 @@ class Message
     //returns the ammount of data that has been succesfully read
     uint8_t Read()
     {
-      if (Serial.available() > 5 &&
-          Serial.read() == begin[0] &&
-          Serial.read() == begin[1])
+      if (getBufferLength() > 5 &&
+          readChar() == begin[0] &&
+          readChar() == begin[1])
       {
         //Read action & data lenght
-        Serial.readuint8_ts((char*)&action, 1);
-        Serial.readuint8_ts((char*)&dataLen, 1);
+		action = readChar();
+        dataLen = readChar();
         if (dataLen > 58)
         {
           dataLen = 58;
         }
-        Serial.readuint8_ts((char*)data, dataLen);
+
+		while (getBufferLength() < dataLen) {}
+
+		readChars((char*)data, dataLen);
         data[dataLen] = 0;
 
         //Corruption check
         uint8_t corruptioncheck[2];
-        Serial.readuint8_ts((char*)&corruptioncheck, 2);
+		readChars((char*)&corruptioncheck, 2);
 
         possiblyCorrupt = *((uint16_t*)corruptioncheck) != *((uint16_t*)end);
 
@@ -55,16 +58,15 @@ class Message
       return 0;
     }
 
-    //returns the amount of uint8_ts succesfully written
+    //returns the amount of bytes succesfully written
     uint8_t Write()
     {
-      uint8_t written = 0;
-      written += Serial.write((const uint8_t*)begin, 2);
-      written += Serial.write(action);
-      written += Serial.write(dataLen);
-      written += Serial.write((const uint8_t*)data, dataLen);
-      written += Serial.write((const uint8_t*)end, 2);
-      return written;
+      writeStringLength((char*)begin, 2, 0);
+      writeChar(action);
+      writeChar(dataLen);
+      writeStringLength((char*)data, dataLen, 0);
+      writeStringLength((char*)end, 2, 0);
+      return 6 + dataLen;
     }
 
     uint8_t WriteString(char * str)
