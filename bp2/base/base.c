@@ -1,5 +1,6 @@
 #include <RP6RobotBaseLib.h>
 #include <someCommonLib.h>
+#include "message.h"
 #include "base.h"
 
 #define RECEIVE_BUFFER_SIZE 101
