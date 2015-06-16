@@ -11,8 +11,7 @@ COMMON_DIR=../common
 RP6_LIB_PATH=$(AVR32_HOME)/RobotLoader/RP6Lib
 RP6_LIB_PATH_OTHERS=$(COMMON_DIR) $(RP6_LIB_PATH) $(RP6_LIB_PATH)/RP6control $(RP6_LIB_PATH)/RP6common $(RP6_LIB_PATH)/RP6base $(RP6_LIB_PATH)/RP6control_M256_WIFI
 
-SRC_COMMON=$(wildcard $(COMMON_DIR)/*.c) $(wildcard $(COMMON_DIR)/*/*.c) $(wildcard $(COMMON_DIR)/*/*/*.c)
-SRC=$(wildcard *.c) $(wildcard */*.c) $(wildcard */*/*.c) $(wildcard */*/*/*.c) $(wildcard */*/*/*/*.c) $(wildcard */*/*/*/*/*.c) $(SRC_COMMON)
+SRC=$(wildcard *.c) $(wildcard */*.c) $(wildcard */*/*.c) $(wildcard */*/*/*.c) $(wildcard */*/*/*/*.c) $(wildcard */*/*/*/*/*.c)
 
 SRC += $(RP6_LIB_PATH)/RP6control/RP6ControlLib.c
 SRC += $(RP6_LIB_PATH)/RP6common/RP6uart.c

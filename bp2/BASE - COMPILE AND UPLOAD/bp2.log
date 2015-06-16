@@ -1,0 +1,97 @@
+﻿Build started 16-6-2015 13:45:29.
+     1>Project "D:\Development\RP6\RP6Projects\bp2\bp2.vcxproj" on node 2 (Rebuild target(s)).
+     1>Rebuild:
+         .\base\BUILDUPLOAD.bat
+         ------------------- clean -------------------
+         
+         -------- begin --------
+         
+         Cleaning project:
+         rm -f base.cof
+         rm -f base.elf
+         rm -f base.map
+         rm -f base.sym
+         rm -f base.lss
+         rm -f base.o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o 
+         rm -f base.lst D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.lst 
+         rm -f base.s D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.s D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.s
+         rm -f base.d D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.d D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.d
+         rm -f base.i D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.i D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.i
+         rm -f .dep/*
+         rmdir .dep
+         -------- end --------
+         
+         ------------------- build -------------------
+         
+         -------- begin --------
+         avr-gcc (GCC) 4.8.2 20131010 (prerelease)
+         Copyright (C) 2013 Free Software Foundation, Inc.
+         This is free software; see the source for copying conditions.  There is NO
+         warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+         
+         
+         Compiling: base.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.o.d base.c -o base.o
+         
+         Compiling: D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6uart.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o
+         D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function '__vector_13':
+         D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:221:26: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
+           static volatile uint8_t dummy;
+                                   ^
+         D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function 'clearReceptionBuffer':
+         D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:296:17: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
+           static uint8_t dummy;
+                          ^
+         
+         Compiling: D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c
+         avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6RobotBaseLib.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o
+         
+         Linking: base.elf
+         avr-gcc -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.o -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.elf.d base.o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o --output base.elf -Wl,-Map=base.map,--cref    -lm
+         
+         Creating load file for Flash: base.hex
+         avr-objcopy -O ihex -R .eeprom base.elf base.hex
+         
+         Creating Extended Listing: base.lss
+         avr-objdump -h -S base.elf > base.lss
+         
+         Creating Symbol Table: base.sym
+         avr-nm -n base.elf > base.sym
+         
+         Size after:
+         AVR Memory Usage
+         ----------------
+         Device: atmega32
+         
+         Program:    7616 bytes (23.2% Full)
+         (.text + .data + .bootloader)
+         
+         Data:        247 bytes (12.1% Full)
+         (.data + .bss + .noinit)
+         
+         
+         
+         -------- end --------
+         
+         ------------------- info  -------------------
+         Using Project name    : base
+         Using Project path    : D:\Development\RP6\RP6Projects\bp2\base\
+         Using Project HEX File: "D:\Development\RP6\RP6Projects\bp2\base\base.hex"
+         Using Robotloader cmd : "D:\Development\RP6\RobotLoader\"
+         ------------------- upload ------------------
+         RobotLoader - COMMANDLINE MODE
+         Perform Action: 
+         Upload Program...
+         --> Hexfile Path: D:\Development\RP6\RP6Projects\bp2\base\base.hex
+         Listing all serial ports...
+         ### Error, could not find specified comport: 
+         Please check the used portname!
+         Trying to close port...
+         Exit code: 1
+         ---------------------------------------------
+     1>Done Building Project "D:\Development\RP6\RP6Projects\bp2\bp2.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.52

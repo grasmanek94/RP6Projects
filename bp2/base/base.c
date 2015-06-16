@@ -1,5 +1,4 @@
 #include <RP6RobotBaseLib.h>
-#include "message.hxx"
 #include "base.h"
 
 enum Actions
@@ -23,6 +22,82 @@ enum Actions
 	UNKNOWN_COMMAND
 };
 
+typedef struct 
+{
+	uint8_t begin[2];
+	uint8_t end[2];
+	uint8_t action;
+	uint8_t dataLen;
+	uint8_t data[59];
+	uint8_t possiblyCorrupt;
+} SMessage;
+
+void InitMessage(SMessage* message)
+{
+	message->begin[0] = '{';
+	message->begin[1] = '{';
+	message->end[0] = '}';
+	message->end[1] = '}';
+}
+
+//returns the ammount of data that has been succesfully read
+uint8_t ReadMessage(SMessage* message)
+{
+	if (getBufferLength() > 5 &&
+		readChar() == message->begin[0] &&
+		readChar() == message->begin[1])
+	{
+		//Read action & data lenght
+		message->action = readChar();
+		message->dataLen = readChar();
+		if (message->dataLen > 58)
+		{
+			message->dataLen = 58;
+		}
+
+		while (getBufferLength() < message->dataLen) {}
+
+		readChars((char*)message->data, message->dataLen);
+		message->data[message->dataLen] = 0;
+
+		//Corruption check
+		uint8_t corruptioncheck[2];
+		readChars((char*)&corruptioncheck, 2);
+
+		message->possiblyCorrupt = corruptioncheck[0] != message->end[0] || corruptioncheck[1] != message->end[1];
+
+		return 6 + message->dataLen;
+	}
+	return 0;
+}
+
+char * ReadString(SMessage* message)
+{
+	if (ReadMessage(message))
+	{
+		return (char*)message->data;
+	}
+	return 0;
+}
+
+//returns the amount of bytes succesfully written
+uint8_t WriteMessage(SMessage* message)
+{
+	writeStringLength((char*)message->begin, 2, 0);
+	writeChar(message->action);
+	writeChar(message->dataLen);
+	writeStringLength((char*)message->data, message->dataLen, 0);
+	writeStringLength((char*)message->end, 2, 0);
+	return 6 + message->dataLen;
+}
+
+uint8_t WriteString(SMessage* message, char * str)
+{
+	message->dataLen = strlen(str) + 1;
+	memcpy(message->data, str, message->dataLen);
+	return WriteMessage(message);
+}
+
 int main(void)
 {
 	setup();
@@ -33,6 +108,13 @@ int main(void)
 	return 0;
 }
 
+SMessage message;
+
+int16_t maximumspeed = 0;
+
+int16_t speedL = 0;
+int16_t speedR = 0;
+
 void setup(void)
 {
 	initRobotBase(); // Always call this first! 
@@ -40,18 +122,13 @@ void setup(void)
 
 	// clear the UART buffer once at the start of the program
 	clearReceptionBuffer();
+
+	InitMessage(&message);
 }
-
-Message message;
-
-int16_t maximumspeed = 0;
-
-int16_t speedL = 0;
-int16_t speedR = 0;
 
 void loop(void)
 {
-	if (message.Read())
+	if (ReadMessage(&message))
 	{
 		if(!message.possiblyCorrupt)
 		{
@@ -64,7 +141,7 @@ void loop(void)
 					memcpy(message.data, &batteryLevel, sizeof(batteryLevel));
 					message.dataLen = sizeof(batteryLevel);
 
-					message.Write();
+					WriteMessage(&message);
 				}
 				break;
 
@@ -73,7 +150,7 @@ void loop(void)
 					memcpy(message.data, &maximumspeed, sizeof(maximumspeed));
 					message.dataLen = sizeof(maximumspeed);
 
-					message.Write();
+					WriteMessage(&message);
 				}
 				break;
 
@@ -84,7 +161,7 @@ void loop(void)
 					message.dataLen = 0;
 					message.action = COMMAND_EXECUTION_SUCCESS;
 
-					message.Write();
+					WriteMessage(&message);
 				}
 				break;
 
@@ -122,7 +199,7 @@ void loop(void)
 
 					message.dataLen = 0;
 
-					message.Write();
+					WriteMessage(&message);
 				}
 				break;
 
@@ -136,7 +213,7 @@ void loop(void)
 					message.action = COMMAND_EXECUTION_SUCCESS;
 					message.dataLen = 0;
 
-					message.Write();
+					WriteMessage(&message);
 
 				}
 				break;
@@ -146,7 +223,7 @@ void loop(void)
 					message.action = UNKNOWN_COMMAND;
 					message.dataLen = 0;
 
-					message.Write();
+					WriteMessage(&message);
 				}
 				break;
 			}
@@ -156,7 +233,7 @@ void loop(void)
 			message.action = MESSAGECORRUPTION_OCCURED;
 			message.dataLen = 0;
 
-			message.Write();
+			WriteMessage(&message);
 		}
 	}
 }

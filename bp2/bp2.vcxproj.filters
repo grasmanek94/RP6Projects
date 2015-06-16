@@ -19,32 +19,23 @@
     <Filter Include="util\control">
       <UniqueIdentifier>{5d86294d-daea-452f-9f61-1940656c5145}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\common">
-      <UniqueIdentifier>{819ca702-dc50-452e-ac77-1067ef483f76}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="common\someCommonLib.c">
-      <Filter>source\common</Filter>
+    <ClCompile Include="control\control.c">
+      <Filter>source\control</Filter>
     </ClCompile>
     <ClCompile Include="base\base.c">
       <Filter>source\base</Filter>
     </ClCompile>
-    <ClCompile Include="control\control.c">
-      <Filter>source\control</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common\someCommonLib.h">
-      <Filter>source\common</Filter>
-    </ClInclude>
     <ClInclude Include="base\base.h">
       <Filter>source\base</Filter>
     </ClInclude>
     <ClInclude Include="control\control.h">
       <Filter>source\control</Filter>
     </ClInclude>
-    <ClInclude Include="base\message.h">
+    <ClInclude Include="base\message.hxx">
       <Filter>source\base</Filter>
     </ClInclude>
   </ItemGroup>

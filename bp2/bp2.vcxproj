@@ -12,13 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base.c" />
-    <ClCompile Include="common\someCommonLib.c" />
     <ClCompile Include="control\control.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\base.h" />
-    <ClInclude Include="base\message.h" />
-    <ClInclude Include="common\someCommonLib.h" />
+    <ClInclude Include="base\message.hxx" />
     <ClInclude Include="control\control.h" />
   </ItemGroup>
   <ItemGroup>
