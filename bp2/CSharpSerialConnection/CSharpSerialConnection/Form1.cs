@@ -12,6 +12,8 @@ namespace CSharpSerialConnection
 	public partial class Form1 : Form
 	{
 		private SerialPort sPort;
+		private static string windowsCom = "COM9";
+		private static string unixCom = "/dev/ttyUSB0";
 
 		public Form1 ()
 		{
@@ -34,9 +36,15 @@ namespace CSharpSerialConnection
 
 		private void button1_Click (object sender, EventArgs e)
 		{
+			MessageBox.Show (Environment.OSVersion.ToString ());
 			if (sPort == null) {
 				try {
-					sPort = new SerialPort ("/dev/ttyUSB0", 38400, Parity.None, 8, StopBits.One);
+
+					if (Environment.OSVersion.ToString ().IndexOf ("unix", StringComparison.CurrentCultureIgnoreCase) != -1) {
+						sPort = new SerialPort ("/dev/ttyUSB0", 38400, Parity.None, 8, StopBits.One);
+					} else {
+						sPort = new SerialPort (windowsCom, 38400, Parity.None, 8, StopBits.One);
+					}
 					sPort.DataReceived += new SerialDataReceivedEventHandler (RenesSerialDataReceived);
 					sPort.Open ();
 				} catch (System.IO.IOException) {
