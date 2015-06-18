@@ -1,48 +1,27 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace BTSerial2
 {
     public partial class Form1 : Form
     {
         private SerialPort _serialPort;
+        private Car _RP9;
 
         public Form1()
         {
             InitializeComponent();
 
-            timer1.Interval = 50;
-            timer1.Start();
-
             _serialPort = new SerialPort();
+
+            _RP9 = new Car("RP9-RZE-53-UE", _serialPort);
+            _RP9.OnValueUpdate += OnValueUpdate;
 
             RefreshComPorts();
         }
 
         private string buffer = "";
-
-        public void AddText(string str)
-        {
-            buffer += str;
-            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
-            buffer = rgx.Replace(buffer, "");
-            if (buffer.Length > 32)
-            {
-                buffer = buffer.Remove(0, buffer.Length - 32);
-            }
-
-            richTextBox1.Text += str + "\r\n";
-            richTextBox1.SelectionStart = richTextBox1.Text.Length;
-            richTextBox1.ScrollToCaret();
-
-            if(buffer.IndexOf("Changing BAUD rate to " + textBox2.Text) != -1)
-            {
-                buffer = "";
-                Reconnect();
-            }
-        }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -89,43 +68,17 @@ namespace BTSerial2
             Reconnect();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void OnValueUpdate(object sender, Car.Actions action)
         {
-            //send
-            try
+            switch (action)
             {
-                if (_serialPort != null && _serialPort.IsOpen)
-                {
-                    _serialPort.Write(textBox1.Text.Replace("\\n", "\n").Replace("\\r", "\r").Replace("\\t", "\t"));
-                }
-            }
-            catch (Exception ex)
-            {
-                AddText(ex.Message);
-            }
-        }
+                case Car.Actions.GET_BATTERY_LEVEL:
+                    fuellb.Text = _RP9.BatteryLevel.ToString();
+                    break;
 
-        private void timer1_Tick_1(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_serialPort != null && _serialPort.IsOpen)
-                {
-                    int index = 0;
-                    while (_serialPort.BytesToRead > 0)
-                    {
-                        byte[] arr = { (byte)_serialPort.ReadByte(), 0 };
-                        AddText(System.Text.Encoding.ASCII.GetString(arr));
-                        if(++index >= 64)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                AddText(ex.Message);
+                case Car.Actions.GET_MAXIMUM_SPEED:
+                    speedlb.Text = _RP9.MaxSpeed.ToString();
+                    break;         
             }
         }
 
@@ -145,30 +98,26 @@ namespace BTSerial2
         private void button3_Click(object sender, EventArgs e)
         {
             RefreshComPorts();
+
+            _RP9.RequestValueUpdate(Car.Actions.GET_BATTERY_LEVEL);
+            _RP9.RequestValueUpdate(Car.Actions.GET_MAXIMUM_SPEED);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void stopbtn_Click(object sender, EventArgs e)
         {
-            //change
-            try
-            {
-                if (_serialPort != null && _serialPort.IsOpen)
-                {
-                    string toWrite = ":";
-                    for(int i = 0; i < 6-textBox3.Text.Length; ++i)
-                    {
-                        toWrite += "0";
-                    }
-                    toWrite += textBox3.Text;
-                    _serialPort.Write(toWrite);
+            motorLeft.Value = 0;
+            motorRight.Value = 0;
+            _RP9.Stop();
+        }
 
-                    textBox2.Text = textBox3.Text;
-                }
-            }
-            catch (Exception ex)
-            {
-                AddText(ex.Message);
-            }
+        private void motorLeft_Scroll(object sender, EventArgs e)
+        {
+            _RP9.setLeftMotor((short)motorLeft.Value);
+        }
+
+        private void motorRight_Scroll(object sender, EventArgs e)
+        {
+            _RP9.setRightMotor((short)motorRight.Value);
         }
     }
 }

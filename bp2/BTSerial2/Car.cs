@@ -5,7 +5,7 @@ namespace BTSerial2
 {
 	public class Car
     {
-        enum Actions
+        public enum Actions
         {
             GET_BATTERY_LEVEL = 1,
 
@@ -26,11 +26,14 @@ namespace BTSerial2
             UNKNOWN_COMMAND
         };
 
+        public delegate void OnValueUpdateHandler(object sender, Actions action);
+        public event OnValueUpdateHandler OnValueUpdate;
+
         private SerialPort _SP;
         private Message writer;
         private Message reader;
 
-        private System.Timers.Timer _Timer;
+        private System.Windows.Forms.Timer _Timer;
 
         private volatile float _BatteryLevel;
         private volatile short _MaxSpeed;
@@ -58,15 +61,15 @@ namespace BTSerial2
             writer = new Message();
             reader = new Message();
 
-            _Timer = new System.Timers.Timer();
+            _Timer = new System.Windows.Forms.Timer();
 
             _Timer.Interval = 100;
-            _Timer.Elapsed += _Timer_Elapsed;
+            _Timer.Tick += _Timer_Elapsed;
             _Timer.Enabled = true;
             _Timer.Start();
         }
 
-        private void _Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void _Timer_Elapsed(object sender, EventArgs e)
         {
             if (_SP == null || !_SP.IsOpen)
             {
@@ -91,6 +94,11 @@ namespace BTSerial2
                                 data[3] = reader.Data[3];
 
                                 BatteryLevel = Convert.ToSingle(data);
+
+                                if(OnValueUpdate != null)
+                                {
+                                    OnValueUpdate(this, (Actions)reader.Action);
+                                }
                             }
                         }
                         break;
@@ -105,6 +113,11 @@ namespace BTSerial2
                                 data[1] = reader.Data[1];
 
                                 MaxSpeed = Convert.ToInt16(data);
+
+                                if(OnValueUpdate != null)
+                                {
+                                    OnValueUpdate(this, (Actions)reader.Action);
+                                }
                             }
                         }
                         break;
@@ -117,60 +130,107 @@ namespace BTSerial2
             }
         }
 
-        public void setLeftMotor (short speed)
+        public bool setLeftMotor (short speed)
 		{
             if (_SP == null || !_SP.IsOpen)
             {
-                return;
+                return false;
             }
 
-            writer.Action = (byte)Actions.SET_MOTOR_L_SPEED;
+            try
+            {
+                writer.Action = (byte)Actions.SET_MOTOR_L_SPEED;
 
-            byte[] intBytes = BitConverter.GetBytes(speed);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(intBytes);
+                byte[] intBytes = BitConverter.GetBytes(speed);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(intBytes);
 
-            writer.Data[0] = intBytes[0];
-            writer.Data[1] = intBytes[1];
+                writer.Data[0] = intBytes[0];
+                writer.Data[1] = intBytes[1];
 
-            writer.DataLen = 2;
-
-            writer.Write(_SP);
+                writer.DataLen = 2;
+                writer.Write(_SP);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-		public void setRightMotor (short speed)
+		public bool setRightMotor (short speed)
 		{
             if (_SP == null || !_SP.IsOpen)
             {
-                return;
+                return false;
             }
 
-            writer.Action = (byte)Actions.SET_MOTOR_R_SPEED;
+            try
+            {
+                writer.Action = (byte)Actions.SET_MOTOR_R_SPEED;
 
-            byte[] intBytes = BitConverter.GetBytes(speed);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(intBytes);
+                byte[] intBytes = BitConverter.GetBytes(speed);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(intBytes);
 
-            writer.Data[0] = intBytes[0];
-            writer.Data[1] = intBytes[1];
+                writer.Data[0] = intBytes[0];
+                writer.Data[1] = intBytes[1];
 
-            writer.DataLen = 2;
-
-            writer.Write(_SP);
+                writer.DataLen = 2;
+                writer.Write(_SP);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
-		public void Stop()
+		public bool Stop()
 		{
             if (_SP == null || !_SP.IsOpen)
             {
-                return;
+                return false;
             }
 
-            writer.Action = (byte)Actions.MOTOR_STOP;
+            try
+            {
+                writer.Action = (byte)Actions.MOTOR_STOP;
+                writer.DataLen = 0;
+                writer.Write(_SP);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
 
-            writer.DataLen = 0;
+        public bool RequestValueUpdate(Actions action)
+        {
+            if (_SP == null || !_SP.IsOpen)
+            {
+                return false;
+            }
 
-            writer.Write(_SP);
+            try
+            {
+                switch (action)
+                {
+                    case Actions.GET_BATTERY_LEVEL:
+                    case Actions.GET_MAXIMUM_SPEED:
+
+                        writer.Action = (byte)action;
+                        writer.DataLen = 0;
+                        writer.Write(_SP);
+                        break;
+                }
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 	}
 }
