@@ -135,27 +135,29 @@
             // 
             this.motorLeft.LargeChange = 30;
             this.motorLeft.Location = new System.Drawing.Point(229, 104);
-            this.motorLeft.Maximum = 255;
-            this.motorLeft.Minimum = -255;
+            this.motorLeft.Maximum = 50;
+            this.motorLeft.Minimum = -50;
             this.motorLeft.Name = "motorLeft";
             this.motorLeft.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.motorLeft.Size = new System.Drawing.Size(45, 359);
             this.motorLeft.SmallChange = 15;
             this.motorLeft.TabIndex = 10;
             this.motorLeft.Scroll += new System.EventHandler(this.motorLeft_Scroll);
+            this.motorLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.motorLeft_MouseUp);
             // 
             // motorRight
             // 
             this.motorRight.LargeChange = 30;
             this.motorRight.Location = new System.Drawing.Point(402, 104);
-            this.motorRight.Maximum = 255;
-            this.motorRight.Minimum = -255;
+            this.motorRight.Maximum = 50;
+            this.motorRight.Minimum = -50;
             this.motorRight.Name = "motorRight";
             this.motorRight.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.motorRight.Size = new System.Drawing.Size(45, 359);
             this.motorRight.SmallChange = 15;
             this.motorRight.TabIndex = 11;
             this.motorRight.Scroll += new System.EventHandler(this.motorRight_Scroll);
+            this.motorRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.motorRight_MouseUp);
             // 
             // stopbtn
             // 

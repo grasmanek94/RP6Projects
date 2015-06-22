@@ -240,7 +240,7 @@ namespace BTSerial2
             }
         }
 
-        public bool setLeftMotor (short speed)
+        public bool setLeftMotor (byte speed)
 		{
             if (_SP == null || !_SP.IsOpen)
             {
@@ -251,14 +251,9 @@ namespace BTSerial2
             {
                 writer.Action = (byte)Actions.SET_MOTOR_L_SPEED;
 
-                byte[] intBytes = BitConverter.GetBytes(speed);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(intBytes);
+                writer.Data[0] = speed;
 
-                writer.Data[0] = intBytes[0];
-                writer.Data[1] = intBytes[1];
-
-                writer.DataLen = 2;
+                writer.DataLen = 1;
                 writer.Write(_SP);
                 return true;
             }
@@ -268,7 +263,7 @@ namespace BTSerial2
             }
         }
 
-		public bool setRightMotor (short speed)
+		public bool setRightMotor (byte speed)
 		{
             if (_SP == null || !_SP.IsOpen)
             {
@@ -279,14 +274,9 @@ namespace BTSerial2
             {
                 writer.Action = (byte)Actions.SET_MOTOR_R_SPEED;
 
-                byte[] intBytes = BitConverter.GetBytes(speed);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(intBytes);
+                writer.Data[0] = speed;
 
-                writer.Data[0] = intBytes[0];
-                writer.Data[1] = intBytes[1];
-
-                writer.DataLen = 2;
+                writer.DataLen = 1;
                 writer.Write(_SP);
                 return true;
             }

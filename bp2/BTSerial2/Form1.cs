@@ -135,12 +135,22 @@ namespace BTSerial2
 
         private void motorLeft_Scroll(object sender, EventArgs e)
         {
-            _RP9.setLeftMotor((short)motorLeft.Value);
+            
         }
 
         private void motorRight_Scroll(object sender, EventArgs e)
         {
-            _RP9.setRightMotor((short)motorRight.Value);
+           
+        }
+
+        private void motorLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            _RP9.setLeftMotor((byte)motorLeft.Value);
+        }
+
+        private void motorRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            _RP9.setRightMotor((byte)motorRight.Value);
         }
     }
 }
