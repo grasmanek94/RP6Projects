@@ -4,31 +4,31 @@
 
 enum Actions
 {
-	GET_BATTERY_LEVEL = 1,		
+	GET_BATTERY_LEVEL = 1,
 
-	SET_MOTOR_L_SPEED,			
-	SET_MOTOR_R_SPEED,			
+	SET_MOTOR_L_SPEED,
+	SET_MOTOR_R_SPEED,
 
-	MOTOR_STOP,					
+	MOTOR_STOP,
 
-	GET_MAXIMUM_SPEED,			
+	GET_MAXIMUM_SPEED,
 
-	RESET_MAX_SPEED,			
+	RESET_MAX_SPEED,
 
-	COMMAND_EXECUTION_SUCCESS,	
-	COMMAND_EXECUTION_FAILURE,	
+	COMMAND_EXECUTION_SUCCESS,
+	COMMAND_EXECUTION_FAILURE,
 
-	MESSAGECORRUPTION_OCCURED,	
+	MESSAGECORRUPTION_OCCURED,
 
-	UNKNOWN_COMMAND,			
+	UNKNOWN_COMMAND,
 
-	NO_COMMAND_TICK				
+	NO_COMMAND_TICK
 };
 
 uint8_t ReadMessage(
-	uint8_t * action /*ptr to action variable*/, 
-	uint8_t * dataLen /*ptr to dataLen variable*/, 
-	uint8_t * _data /*ptr to data variable*/, 
+	uint8_t * action /*ptr to action variable*/,
+	uint8_t * dataLen /*ptr to dataLen variable*/,
+	uint8_t * _data /*ptr to data variable*/,
 	uint8_t * possiblyCorrupt)
 {
 	const int min_message_len = 6;
@@ -37,7 +37,7 @@ uint8_t ReadMessage(
 	{
 		if (readChar() == '<')
 		{
-			if(readChar() == '{')
+			if (readChar() == '{')
 			{
 				//Read action & data len
 				*action = readChar();
@@ -50,7 +50,7 @@ uint8_t ReadMessage(
 						*dataLen = 25;
 					}
 
-					while (getBufferLength() < *dataLen + 2 /* corruption check bytes */) { }
+					while (getBufferLength() < *dataLen + 2 /* corruption check bytes */) {}
 
 					if (*dataLen)
 					{
@@ -100,6 +100,7 @@ uint8_t data[58];
 int main(void)
 {
 	initRobotBase();
+	powerON();
 	clearReceptionBuffer();
 	startStopwatch1();
 
@@ -153,17 +154,16 @@ int main(void)
 				case SET_MOTOR_L_SPEED:
 				case SET_MOTOR_R_SPEED:
 				{
-					int16_t speed = 0;
+					int8_t speed = 0;
 
 					if (dataLen == 1)
 					{
-						memcpy(&speed, data, sizeof(speed));
+						speed = data[0];
 
 						if (abs(speed) > maximumspeed)
 						{
 							maximumspeed = abs(speed);
 						}
-
 
 						if (speed > 50)
 						{
@@ -174,20 +174,18 @@ int main(void)
 							speed = -50;
 						}
 
-						speed *= 4;
-
 						if (action == SET_MOTOR_L_SPEED)
 						{
-							speedL = speed;
+							speedL = speed * 4;
 						}
 						else
 						{
-							speedR = speed;
+							speedR = speed * 4;
 						}
 
-						setMotorDir(speedL >= 0 ? FWD : BWD, speedR >= 0 ? FWD : BWD);
+						//setMotorDir(speedL >= 0 ? FWD : BWD, speedR >= 0 ? FWD : BWD);
 
-						moveAtSpeed(speedL, speedR);
+						moveAtSpeedDirection(speedL, speedR);
 
 						action = COMMAND_EXECUTION_SUCCESS;
 					}
@@ -234,7 +232,17 @@ int main(void)
 
 			action = NO_COMMAND_TICK;
 			dataLen = 0;
+			WriteBareMessage(action, dataLen, data);
 
+			action = GET_BATTERY_LEVEL;
+			uint8_t batteryLevel = readADC(adcBat) / 8;
+			data[0] = batteryLevel;
+			dataLen = 1;
+			WriteBareMessage(action, dataLen, data);
+
+			action = GET_MAXIMUM_SPEED;
+			data[0] = maximumspeed;
+			dataLen = 1;
 			WriteBareMessage(action, dataLen, data);
 		}
 	}
