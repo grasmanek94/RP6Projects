@@ -44,15 +44,15 @@ namespace BTSerial2
 
         public string Name { get; private set; }
 
-        private volatile float _BatteryLevel;
-        public float BatteryLevel
+        private volatile byte _BatteryLevel;
+        public byte BatteryLevel
         {
             get { return _BatteryLevel; }
             private set { _BatteryLevel = value; }
         }
 
-        private volatile short _MaxSpeed;
-        public short MaxSpeed
+        private volatile byte _MaxSpeed;
+        public byte MaxSpeed
         {
             get { return _MaxSpeed; }
             private set { _MaxSpeed = value; }
@@ -151,16 +151,9 @@ namespace BTSerial2
                     {
                         case Actions.GET_BATTERY_LEVEL:
                         {
-                            if (reader.DataLen == 4)
+                            if (reader.DataLen == 1)
                             {
-                                byte[] data = new byte[4];
-
-                                data[0] = reader.Data[0];
-                                data[1] = reader.Data[1];
-                                data[2] = reader.Data[2];
-                                data[3] = reader.Data[3];
-
-                                BatteryLevel = Convert.ToSingle(data);
+                                BatteryLevel = reader.Data[0];
 
                                 if(OnValueUpdate != null)
                                 {
@@ -172,14 +165,9 @@ namespace BTSerial2
 
                         case Actions.GET_MAXIMUM_SPEED:
                         {
-                            if (reader.DataLen == 2)
+                            if (reader.DataLen == 1)
                             {
-                                byte[] data = new byte[2];
-
-                                data[0] = reader.Data[0];
-                                data[1] = reader.Data[1];
-
-                                MaxSpeed = Convert.ToInt16(data);
+                                MaxSpeed = reader.Data[0];
 
                                 if(OnValueUpdate != null)
                                 {
