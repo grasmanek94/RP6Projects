@@ -89,7 +89,7 @@ void WriteBareMessage(uint8_t action, uint8_t dataLen, uint8_t* _data)
 	writeChar(0);
 }
 
-int16_t maximumspeed = 0;
+uint8_t maximumspeed = 0;
 int16_t speedL = 0;
 int16_t speedR = 0;
 uint8_t action = 0;
@@ -124,20 +124,17 @@ int main(void)
 				{
 				case GET_BATTERY_LEVEL:
 				{
-					float batteryLevel = ((float)readADC(adcBat) / 1024.0f) * 100.0f;
-
-					memcpy(data, &batteryLevel, sizeof(batteryLevel));
-					dataLen = sizeof(batteryLevel);
-
+					uint8_t batteryLevel = readADC(adcBat) / 8;
+					data[0] = batteryLevel;
+					dataLen = 1;
 					WriteBareMessage(action, dataLen, data);
 				}
 				break;
 
 				case GET_MAXIMUM_SPEED:
 				{
-					memcpy(data, &maximumspeed, sizeof(maximumspeed));
-					dataLen = sizeof(maximumspeed);
-
+					data[0] = maximumspeed;
+					dataLen = 1;
 					WriteBareMessage(action, dataLen, data);
 				}
 				break;
@@ -158,7 +155,7 @@ int main(void)
 				{
 					int16_t speed = 0;
 
-					if (dataLen == sizeof(speed))
+					if (dataLen == 1)
 					{
 						memcpy(&speed, data, sizeof(speed));
 
@@ -168,14 +165,16 @@ int main(void)
 						}
 
 
-						if (speed > 200)
+						if (speed > 50)
 						{
-							speed = 200;
+							speed = 50;
 						}
-						if (speed < -200)
+						if (speed < -50)
 						{
-							speed = -200;
+							speed = -50;
 						}
+
+						speed *= 4;
 
 						if (action == SET_MOTOR_L_SPEED)
 						{
@@ -237,18 +236,6 @@ int main(void)
 			dataLen = 0;
 
 			WriteBareMessage(action, dataLen, data);
-
-			//float batteryLevel = ((float)readADC(adcBat) / 1024.0f) * 100.0f;
-
-			//memcpy(data, &batteryLevel, sizeof(batteryLevel));
-			//dataLen = sizeof(batteryLevel);
-
-			//WriteBareMessage(action, dataLen, data);
-
-			//memcpy(data, &maximumspeed, sizeof(maximumspeed));
-			//dataLen = sizeof(maximumspeed);
-
-			//WriteBareMessage(action, dataLen, data);
 		}
 	}
 	return 0;
