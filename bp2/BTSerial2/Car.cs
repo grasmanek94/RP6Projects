@@ -7,7 +7,7 @@ namespace BTSerial2
     {
         public enum Actions
         {
-            GET_BATTERY_LEVEL = 1,
+            GET_BATTERY_LEVEL = 'A',
 
             SET_MOTOR_L_SPEED,
             SET_MOTOR_R_SPEED,
@@ -36,6 +36,7 @@ namespace BTSerial2
         private Message reader;
 
         private System.Windows.Forms.Timer _Timer;
+        //private System.Timers.Timer _Timer;
 
         private volatile float _BatteryLevel;
         private volatile short _MaxSpeed;
@@ -78,9 +79,11 @@ namespace BTSerial2
             reader = new Message();
 
             _Timer = new System.Windows.Forms.Timer();
+            //_Timer = new System.Timers.Timer();
 
             _Timer.Interval = 50;
             _Timer.Tick += _Timer_Elapsed;
+            //_Timer.Elapsed += _Timer_Elapsed1;
             _Timer.Enabled = true;
             _Timer.Start();
 
@@ -88,6 +91,11 @@ namespace BTSerial2
             CorruptionsOccured = 0;
             MaxSpeed = 0;
             BatteryLevel = 0;
+        }
+
+        private void _Timer_Elapsed1(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            _Timer_Elapsed(null, null);
         }
 
         private void _Timer_Elapsed(object sender, EventArgs e)

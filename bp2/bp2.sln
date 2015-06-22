@@ -4,8 +4,6 @@ VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bp2", "bp2.vcxproj", "{37A42495-D54F-4BA1-9C69-788A3AFFD401}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTSerial2", "BTSerial2\BTSerial2.csproj", "{9D7FAA0B-15B9-49FC-AF88-5E5C5D2D031A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		BASE - COMPILE AND UPLOAD|Any CPU = BASE - COMPILE AND UPLOAD|Any CPU

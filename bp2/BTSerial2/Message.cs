@@ -22,7 +22,7 @@ namespace BTSerial2
 		{
 			Begin = new byte[2];
 			End = new byte[2];
-			Data = new byte[59];
+			Data = new byte[26];
 			Corruptioncheck = new byte[2];
 			Header = new byte[2];
 
@@ -56,9 +56,9 @@ namespace BTSerial2
                 //Read action & Data lenght
                 this.Action = (byte)port.ReadByte();
                 this.DataLen = (byte)port.ReadByte();
-                if (this.DataLen > 58)
+                if (this.DataLen > 25)
                 {
-                    this.DataLen = 58;
+                    this.DataLen = 25;
                 }
                 port.Read(this.Data, 0, this.DataLen);
                 this.Data[this.DataLen] = 0;

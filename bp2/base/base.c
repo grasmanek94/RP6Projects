@@ -1,103 +1,83 @@
 #include <RP6RobotBaseLib.h>
 #include "base.h"
+#include <stdlib.h>
 
 enum Actions
 {
-	GET_BATTERY_LEVEL = 1,
+	GET_BATTERY_LEVEL = 1,		//B
 
-	SET_MOTOR_L_SPEED,
-	SET_MOTOR_R_SPEED,
+	SET_MOTOR_L_SPEED,			//C
+	SET_MOTOR_R_SPEED,			//D
 
-	MOTOR_STOP,
+	MOTOR_STOP,					//E
 
-	GET_MAXIMUM_SPEED,
+	GET_MAXIMUM_SPEED,			//F
 
-	RESET_MAX_SPEED,
+	RESET_MAX_SPEED,			//G
 
-	COMMAND_EXECUTION_SUCCESS,
-	COMMAND_EXECUTION_FAILURE,
+	COMMAND_EXECUTION_SUCCESS,	//H
+	COMMAND_EXECUTION_FAILURE,	//I
 
-	MESSAGECORRUPTION_OCCURED,
+	MESSAGECORRUPTION_OCCURED,	//J
 
-	UNKNOWN_COMMAND,
+	UNKNOWN_COMMAND,			//K
 
-	NO_COMMAND_TICK
+	NO_COMMAND_TICK				//L
 };
 
-typedef struct 
-{
-	uint8_t begin[2];
-	uint8_t end[2];
-	uint8_t action;
-	uint8_t dataLen;
-	uint8_t data[59];
-	uint8_t possiblyCorrupt;
-} SMessage;
-
-void InitMessage(SMessage* message)
-{
-	message->begin[0] = '{';
-	message->begin[1] = '{';
-	message->end[0] = '}';
-	message->end[1] = '}';
-}
-
-//returns the ammount of data that has been succesfully read
-uint8_t ReadMessage(SMessage* message)
+uint8_t ReadMessage(uint8_t * action /*ptr to action variable*/, uint8_t * dataLen /*ptr to dataLen variable*/, uint8_t * _data /*ptr to data variable*/, uint8_t * possiblyCorrupt)
 {
 	if (getBufferLength() > 5 &&
-		readChar() == message->begin[0] &&
-		readChar() == message->begin[1])
+		readChar() == '<' &&
+		readChar() == '{')
 	{
 		//Read action & data lenght
-		message->action = readChar();
-		message->dataLen = readChar();
-		if (message->dataLen > 58)
+		*action = readChar() - 'A';
+		*dataLen = readChar() - 'A';
+		if (*dataLen > 25)
 		{
-			message->dataLen = 58;
+			*dataLen = 25;
 		}
 
-		while (getBufferLength() < message->dataLen) {}
+		while (getBufferLength() < *dataLen) {}
 
-		readChars((char*)message->data, message->dataLen);
-		message->data[message->dataLen] = 0;
+		if (*dataLen)
+		{
+			for (int i = 0; i < *dataLen; ++i)
+			{
+				_data[i] = readChar();
+			}
+		}
+		_data[*dataLen] = 0;
 
 		//Corruption check
-		uint8_t corruptioncheck[2];
-		readChars((char*)&corruptioncheck, 2);
+		while (getBufferLength() < 2) {}
 
-		message->possiblyCorrupt = corruptioncheck[0] != message->end[0] || corruptioncheck[1] != message->end[1];
+		*possiblyCorrupt = 0;
+		*possiblyCorrupt |= readChar() != '}';
+		*possiblyCorrupt |= readChar() != '>';
 
-		return 6 + message->dataLen;
+		return 6 + *dataLen;
 	}
 	return 0;
 }
 
-char * ReadString(SMessage* message)
+uint8_t tosend[36];
+void WriteBareMessage(uint8_t action, uint8_t dataLen, uint8_t* _data)
 {
-	if (ReadMessage(message))
+	int i = 0;
+	tosend[i++] = '<';
+	tosend[i++] = '{';
+	tosend[i++] = 'A' + action;
+	tosend[i++] = 'A' + dataLen > 25 ? 25 : dataLen;
+	for (int j = 0; j < dataLen; ++j)
 	{
-		return (char*)message->data;
+		tosend[i++] = _data[j];
 	}
-	return 0;
-}
-
-//returns the amount of bytes succesfully written
-uint8_t WriteMessage(SMessage* message)
-{
-	writeStringLength((char*)message->begin, 2, 0);
-	writeChar(message->action);
-	writeChar(message->dataLen);
-	writeStringLength((char*)message->data, message->dataLen, 0);
-	writeStringLength((char*)message->end, 2, 0);
-	return 6 + message->dataLen;
-}
-
-uint8_t WriteString(SMessage* message, char * str)
-{
-	message->dataLen = strlen(str) + 1;
-	memcpy(message->data, str, message->dataLen);
-	return WriteMessage(message);
+	tosend[i++] = '}';
+	tosend[i++] = '>';
+	tosend[i++] = 0;
+	writeStringLength(tosend, 7 + dataLen, 0);
 }
 
 int main(void)
@@ -109,8 +89,6 @@ int main(void)
 	}
 	return 0;
 }
-
-SMessage message;
 
 int16_t maximumspeed = 0;
 
@@ -125,45 +103,50 @@ void setup(void)
 	// clear the UART buffer once at the start of the program
 	clearReceptionBuffer();
 
-	InitMessage(&message);
-
 	startStopwatch1();
 }
+
+uint8_t action = 0;
+uint8_t dataLen = 0;
+uint8_t possiblyCorrupt = 0;;
+uint8_t data[58];
 
 void loop(void)
 {
 	task_RP6System();
 
-	if (ReadMessage(&message))
+	if (ReadMessage(&action, &dataLen, data, &possiblyCorrupt))
 	{
-		if(message.possiblyCorrupt)
-		{
-			message.action = MESSAGECORRUPTION_OCCURED;
-			message.dataLen = 0;
+		WriteBareMessage(action, dataLen, data);
 
-			WriteMessage(&message);
+		if(possiblyCorrupt)
+		{
+			action = MESSAGECORRUPTION_OCCURED;
+			dataLen = 0;
+		
+			WriteBareMessage(action, dataLen, data);
 		}
 		else
 		{
-			switch (message.action)
+			switch (action)
 			{
 				case GET_BATTERY_LEVEL:
 				{
 					float batteryLevel = ((float)readADC(adcBat) / 1024.0f) * 100.0f;
 
-					memcpy(message.data, &batteryLevel, sizeof(batteryLevel));
-					message.dataLen = sizeof(batteryLevel);
+					memcpy(data, &batteryLevel, sizeof(batteryLevel));
+					dataLen = sizeof(batteryLevel);
 
-					WriteMessage(&message);
+					WriteBareMessage(action, dataLen, data);
 				}
 				break;
 
 				case GET_MAXIMUM_SPEED:
 				{
-					memcpy(message.data, &maximumspeed, sizeof(maximumspeed));
-					message.dataLen = sizeof(maximumspeed);
+					memcpy(data, &maximumspeed, sizeof(maximumspeed));
+					dataLen = sizeof(maximumspeed);
 
-					WriteMessage(&message);
+					WriteBareMessage(action, dataLen, data);
 				}
 				break;
 
@@ -171,10 +154,10 @@ void loop(void)
 				{
 					maximumspeed = 0;
 
-					message.dataLen = 0;
-					message.action = COMMAND_EXECUTION_SUCCESS;
+					dataLen = 0;
+					action = COMMAND_EXECUTION_SUCCESS;
 
-					WriteMessage(&message);
+					WriteBareMessage(action, dataLen, data);
 				}
 				break;
 
@@ -183,16 +166,26 @@ void loop(void)
 				{
 					int16_t speed = 0;
 
-					if (message.dataLen == sizeof(speed))
+					if (dataLen == sizeof(speed))
 					{
-						memcpy(&speed, message.data, sizeof(speed));
+						memcpy(&speed, data, sizeof(speed));
 
 						if (abs(speed) > maximumspeed)
 						{
 							maximumspeed = abs(speed);
 						}
 
-						if (message.action == SET_MOTOR_L_SPEED)
+						
+						if (speed > 200)
+						{
+							speed = 200;
+						}
+						if (speed < -200)
+						{
+							speed = -200;
+						}
+
+						if (action == SET_MOTOR_L_SPEED)
 						{
 							speedL = speed;
 						}
@@ -201,18 +194,20 @@ void loop(void)
 							speedR = speed;
 						}
 
-						moveAtSpeedDirection(speedL, speedR);
+						setMotorDir(speedL >= 0 ? FWD : BWD, speedR >= 0 ? FWD : BWD);
 
-						message.action = COMMAND_EXECUTION_SUCCESS;
+						moveAtSpeed(speedL, speedR);
+
+						action = COMMAND_EXECUTION_SUCCESS;
 					}
 					else
 					{
-						message.action = COMMAND_EXECUTION_FAILURE;
+						action = COMMAND_EXECUTION_FAILURE;
 					}
 
-					message.dataLen = 0;
+					dataLen = 0;
 
-					WriteMessage(&message);
+					WriteBareMessage(action, dataLen, data);
 				}
 				break;
 
@@ -223,20 +218,20 @@ void loop(void)
 
 					moveAtSpeedDirection(speedL, speedR);
 
-					message.action = COMMAND_EXECUTION_SUCCESS;
-					message.dataLen = 0;
+					action = COMMAND_EXECUTION_SUCCESS;
+					dataLen = 0;
 
-					WriteMessage(&message);
+					WriteBareMessage(action, dataLen, data);
 
 				}
 				break;
 
 				default:
 				{
-					message.action = UNKNOWN_COMMAND;
-					message.dataLen = 0;
+					action = UNKNOWN_COMMAND;
+					dataLen = 0;
 
-					WriteMessage(&message);
+					WriteBareMessage(action, dataLen, data);
 				}
 				break;
 			}
@@ -246,21 +241,21 @@ void loop(void)
 	{
 		setStopwatch1(0);
 
-		message.action = NO_COMMAND_TICK;
-		message.dataLen = 0;
+		//action = NO_COMMAND_TICK;
+		//dataLen = 0;
 
-		WriteMessage(&message);
+		//WriteBareMessage(action, dataLen, data);
 
-		float batteryLevel = ((float)readADC(adcBat) / 1024.0f) * 100.0f;
+		//float batteryLevel = ((float)readADC(adcBat) / 1024.0f) * 100.0f;
 
-		memcpy(message.data, &batteryLevel, sizeof(batteryLevel));
-		message.dataLen = sizeof(batteryLevel);
+		//memcpy(data, &batteryLevel, sizeof(batteryLevel));
+		//dataLen = sizeof(batteryLevel);
 
-		WriteMessage(&message);
+		//WriteBareMessage(action, dataLen, data);
 
-		memcpy(message.data, &maximumspeed, sizeof(maximumspeed));
-		message.dataLen = sizeof(maximumspeed);
+		//memcpy(data, &maximumspeed, sizeof(maximumspeed));
+		//dataLen = sizeof(maximumspeed);
 
-		WriteMessage(&message);
+		//WriteBareMessage(action, dataLen, data);
 	}
 }
