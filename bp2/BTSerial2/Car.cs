@@ -93,6 +93,20 @@ namespace BTSerial2
             private set { _UnknownCommands = value; }
         }
 
+        private volatile int _CommandsSend;
+        public int CommandsSend
+        {
+            get { return _CommandsSend; }
+            private set { _CommandsSend = value; }
+        }
+
+        private volatile int _CommandsRead;
+        public int CommandsRead
+        {
+            get { return _CommandsRead; }
+            private set { _CommandsRead = value; }
+        }
+
         public Car (string name, SerialPort port)
 		{
 			Name = name;
@@ -218,6 +232,23 @@ namespace BTSerial2
             catch (Exception)
             {
 
+            }
+
+            if(CommandsSend != writer.AmountWritten)
+            {
+                CommandsSend = writer.AmountWritten;
+                if (OnValueUpdate != null)
+                {
+                    OnValueUpdate(this, Actions.COMMANDS_SEND);
+                }
+            }
+            if (CommandsRead != reader.AmountRead)
+            {
+                CommandsRead = reader.AmountRead;
+                if (OnValueUpdate != null)
+                {
+                    OnValueUpdate(this, Actions.COMMANDS_READ);
+                }
             }
         }
 

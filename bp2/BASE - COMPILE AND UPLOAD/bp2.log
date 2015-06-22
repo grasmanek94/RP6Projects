@@ -27,10 +27,10 @@
   
   
   Compiling: base.c
-  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.o.d base.c -o base.o
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2 -DNO_FUCKING_EMERGENCY_SHUTDOWN  -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.o.d base.c -o base.o
   
   Compiling: D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c
-  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6uart.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2 -DNO_FUCKING_EMERGENCY_SHUTDOWN  -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6uart.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o
   D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c: In function '__vector_13':
   D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c:221:26: warning: variable 'dummy' set but not used [-Wunused-but-set-variable]
     static volatile uint8_t dummy;
@@ -41,10 +41,10 @@
                    ^
   
   Compiling: D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c
-  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6RobotBaseLib.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o
+  avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2 -DNO_FUCKING_EMERGENCY_SHUTDOWN  -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6RobotBaseLib.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o
   
   Linking: base.elf
-  avr-gcc -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.o -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.elf.d base.o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o --output base.elf -Wl,-Map=base.map,--cref    -lm
+  avr-gcc -mmcu=atmega32 -I. -gdwarf-2 -DNO_FUCKING_EMERGENCY_SHUTDOWN  -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.o -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.elf.d base.o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.o --output base.elf -Wl,-Map=base.map,--cref    -lm
   
   Creating load file for Flash: base.hex
   avr-objcopy -O ihex -R .eeprom base.elf base.hex
@@ -60,7 +60,7 @@
   ----------------
   Device: atmega32
   
-  Program:    7782 bytes (23.7% Full)
+  Program:    7050 bytes (21.5% Full)
   (.text + .data + .bootloader)
   
   Data:        242 bytes (11.8% Full)
@@ -91,7 +91,7 @@
   Bootloader message:
   Upload in progress...
   Baudrate is set to: 38400
-  Uploading new program to target device; Range: 0 - 1e66
+  Uploading new program to target device; Range: 0 - 1b8a
   Connected to target!
   Target ID received:
   RP6: Board ID 1, Firmware Version 1.4, Board Rev.: 5
@@ -101,51 +101,48 @@
   Connected to:
   "RP6 Robot Base"
   FW Version: 1.4
-  Battery Voltage: 6.84V
-  Voltage read: 6.84V
+  Battery Voltage: 6.98V
+  Voltage read: 6.98V
   Battery Voltage is in acceptable range.
   Setup High Speed...
   Speed ACK!
   Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 38400 to 500000 OK!
   Setup OK!
   Upload in progress...
-  Write 256b @0 ; CRC16: 0x1588
-  Write 256b @256 ; CRC16: 0xADCB
-  Write 256b @512 ; CRC16: 0x8906
-  Write 256b @768 ; CRC16: 0x16C5
-  Write 256b @1024 ; CRC16: 0x49B4
-  Write 256b @1280 ; CRC16: 0xB592
-  Write 256b @1536 ; CRC16: 0xC16
-  Write 256b @1792 ; CRC16: 0x352A
-  Write 256b @2048 ; CRC16: 0xC69D
-  Write 256b @2304 ; CRC16: 0x94A
-  Write 256b @2560 ; CRC16: 0x42C9
-  Write 256b @2816 ; CRC16: 0x831D
-  Write 256b @3072 ; CRC16: 0xB38C
-  Write 256b @3328 ; CRC16: 0x906
-  Write 256b @3584 ; CRC16: 0x282E
-  Write 256b @3840 ; CRC16: 0x80DB
-  Write 256b @4096 ; CRC16: 0xE0EA
-  Write 256b @4352 ; CRC16: 0x60CB
-  Write 256b @4608 ; CRC16: 0xD3E7
-  Write 256b @4864 ; CRC16: 0xE0D7
-  Write 256b @5120 ; CRC16: 0x1682
-  Write 256b @5376 ; CRC16: 0xC0E1
-  Write 256b @5632 ; CRC16: 0xDCC2
-  Write 256b @5888 ; CRC16: 0x7700
-  Write 256b @6144 ; CRC16: 0x9A52
-  Write 256b @6400 ; CRC16: 0xF978
-  Write 256b @6656 ; CRC16: 0xF264
-  Write 256b @6912 ; CRC16: 0xB343
-  Write 256b @7168 ; CRC16: 0x240C
-  Write 256b @7424 ; CRC16: 0x338E
-  Write 256b @7680 ; CRC16: 0x6790
+  Write 256b @0 ; CRC16: 0x3A0B
+  Write 256b @256 ; CRC16: 0x150
+  Write 256b @512 ; CRC16: 0x3BF1
+  Write 256b @768 ; CRC16: 0x9205
+  Write 256b @1024 ; CRC16: 0x356E
+  Write 256b @1280 ; CRC16: 0x57F4
+  Write 256b @1536 ; CRC16: 0x5BD0
+  Write 256b @1792 ; CRC16: 0xE8EE
+  Write 256b @2048 ; CRC16: 0x47A4
+  Write 256b @2304 ; CRC16: 0x463E
+  Write 256b @2560 ; CRC16: 0x3B3B
+  Write 256b @2816 ; CRC16: 0x9ECF
+  Write 256b @3072 ; CRC16: 0x932
+  Write 256b @3328 ; CRC16: 0xB9DE
+  Write 256b @3584 ; CRC16: 0x4AA5
+  Write 256b @3840 ; CRC16: 0xF860
+  Write 256b @4096 ; CRC16: 0x9B3
+  Write 256b @4352 ; CRC16: 0xD0
+  Write 256b @4608 ; CRC16: 0xD7A6
+  Write 256b @4864 ; CRC16: 0xB9C5
+  Write 256b @5120 ; CRC16: 0x7C55
+  Write 256b @5376 ; CRC16: 0xD6E9
+  Write 256b @5632 ; CRC16: 0xF9B1
+  Write 256b @5888 ; CRC16: 0xB973
+  Write 256b @6144 ; CRC16: 0xC9B3
+  Write 256b @6400 ; CRC16: 0xE666
+  Write 256b @6656 ; CRC16: 0x5330
+  Write 256b @6912 ; CRC16: 0xD1BA
   Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 500000 to 38400 OK!
   Bootloader message:
   Task completed successfully!
-  Size: 7782 bytes, CRC16: 0x93AA
+  Size: 7050 bytes, CRC16: 0xBAC9
   File: base.hex
-  Time: 1296ms
+  Time: 1211ms
   Upload complete!
   Trying to close port...
   COM CLOSED!

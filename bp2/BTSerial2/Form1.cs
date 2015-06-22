@@ -92,7 +92,13 @@ namespace BTSerial2
                     break;
                 case Car.Actions.UNKNOWN_COMMAND:
                     cmdulbl.Text = _RP9.UnknownCommands.ToString();
-                    break;                
+                    break;
+                case Car.Actions.COMMANDS_READ:
+                    crlbl.Text = _RP9.CommandsRead.ToString();
+                    break;
+                case Car.Actions.COMMANDS_SEND:
+                    cslbl.Text = _RP9.CommandsSend.ToString();
+                    break;              
             }
 
             this.Refresh();
