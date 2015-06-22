@@ -78,8 +78,18 @@ namespace BTSerial2
 
                 case Car.Actions.GET_MAXIMUM_SPEED:
                     speedlb.Text = _RP9.MaxSpeed.ToString();
-                    break;         
+                    break;
+
+                case Car.Actions.NO_COMMAND_TICK:
+                    lastAlive.Text = _RP9.LastNoCommandTick.ToString();
+                    break;
+                case Car.Actions.MESSAGECORRUPTION_OCCURED:
+                    crolbl.Text = _RP9.CorruptionsOccured.ToString();
+                    break;   
             }
+
+            this.Refresh();
+            Application.DoEvents();
         }
 
         private void RefreshComPorts()

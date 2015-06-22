@@ -23,7 +23,9 @@ namespace BTSerial2
 
             MESSAGECORRUPTION_OCCURED,
 
-            UNKNOWN_COMMAND
+            UNKNOWN_COMMAND,
+
+            NO_COMMAND_TICK
         };
 
         public delegate void OnValueUpdateHandler(object sender, Actions action);
@@ -37,6 +39,8 @@ namespace BTSerial2
 
         private volatile float _BatteryLevel;
         private volatile short _MaxSpeed;
+        private volatile int _LastNoCommandTick;
+        private volatile int _CorruptionsOccured;
 
         public float BatteryLevel
         {
@@ -52,6 +56,18 @@ namespace BTSerial2
             private set { _MaxSpeed = value; }
         }
 
+        public int LastNoCommandTick
+        {
+            get { return _LastNoCommandTick; }
+            private set { _LastNoCommandTick = value; }
+        }
+
+        public int CorruptionsOccured
+        {
+            get { return _CorruptionsOccured; }
+            private set { _CorruptionsOccured = value; }
+        }
+
         public Car (string name, SerialPort port)
 		{
 			Name = name;
@@ -63,10 +79,15 @@ namespace BTSerial2
 
             _Timer = new System.Windows.Forms.Timer();
 
-            _Timer.Interval = 100;
+            _Timer.Interval = 50;
             _Timer.Tick += _Timer_Elapsed;
             _Timer.Enabled = true;
             _Timer.Start();
+
+            LastNoCommandTick = 0;
+            CorruptionsOccured = 0;
+            MaxSpeed = 0;
+            BatteryLevel = 0;
         }
 
         private void _Timer_Elapsed(object sender, EventArgs e)
@@ -121,6 +142,22 @@ namespace BTSerial2
                             }
                         }
                         break;
+
+                        case Actions.NO_COMMAND_TICK:
+                            LastNoCommandTick = Environment.TickCount;
+                            if (OnValueUpdate != null)
+                            {
+                                OnValueUpdate(this, (Actions)reader.Action);
+                            }
+                            break;
+
+                        case Actions.MESSAGECORRUPTION_OCCURED:
+                            ++CorruptionsOccured;
+                            if (OnValueUpdate != null)
+                            {
+                                OnValueUpdate(this, (Actions)reader.Action);
+                            }
+                            break;
                     }
                 }
             }

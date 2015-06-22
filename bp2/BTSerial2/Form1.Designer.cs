@@ -41,6 +41,10 @@
             this.stopbtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lastAlive = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.crolbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.motorLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.motorRight)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +65,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(89, 20);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "115200";
+            this.textBox2.Text = "38400 ";
             // 
             // button3
             // 
@@ -171,11 +175,51 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "R";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(101, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Last alive";
+            // 
+            // lastAlive
+            // 
+            this.lastAlive.AutoSize = true;
+            this.lastAlive.Location = new System.Drawing.Point(159, 38);
+            this.lastAlive.Name = "lastAlive";
+            this.lastAlive.Size = new System.Drawing.Size(13, 13);
+            this.lastAlive.TabIndex = 16;
+            this.lastAlive.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(101, 51);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "CRO";
+            // 
+            // crolbl
+            // 
+            this.crolbl.AutoSize = true;
+            this.crolbl.Location = new System.Drawing.Point(159, 51);
+            this.crolbl.Name = "crolbl";
+            this.crolbl.Size = new System.Drawing.Size(13, 13);
+            this.crolbl.TabIndex = 18;
+            this.crolbl.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 475);
+            this.Controls.Add(this.crolbl);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lastAlive);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.stopbtn);
@@ -213,6 +257,10 @@
         private System.Windows.Forms.Button stopbtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lastAlive;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label crolbl;
     }
 }
 

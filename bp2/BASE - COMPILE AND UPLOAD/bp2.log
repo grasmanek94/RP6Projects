@@ -60,7 +60,7 @@
   ----------------
   Device: atmega32
   
-  Program:    7616 bytes (23.2% Full)
+  Program:    7742 bytes (23.6% Full)
   (.text + .data + .bootloader)
   
   Data:        247 bytes (12.1% Full)
@@ -91,7 +91,7 @@
   Bootloader message:
   Upload in progress...
   Baudrate is set to: 38400
-  Uploading new program to target device; Range: 0 - 1dc0
+  Uploading new program to target device; Range: 0 - 1e3e
   Connected to target!
   Target ID received:
   RP6: Board ID 1, Firmware Version 1.4, Board Rev.: 5
@@ -101,50 +101,51 @@
   Connected to:
   "RP6 Robot Base"
   FW Version: 1.4
-  Battery Voltage: 7.46V
-  Voltage read: 7.46V
+  Battery Voltage: 7.17V
+  Voltage read: 7.17V
   Battery Voltage is in acceptable range.
   Setup High Speed...
   Speed ACK!
   Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 38400 to 500000 OK!
   Setup OK!
   Upload in progress...
-  Write 256b @0 ; CRC16: 0x61C1
+  Write 256b @0 ; CRC16: 0x8945
   Write 256b @256 ; CRC16: 0xADCB
-  Write 256b @512 ; CRC16: 0x28BF
-  Write 256b @768 ; CRC16: 0xC508
-  Write 256b @1024 ; CRC16: 0xB897
-  Write 256b @1280 ; CRC16: 0x1F38
-  Write 256b @1536 ; CRC16: 0xB1EA
-  Write 256b @1792 ; CRC16: 0x4AF8
-  Write 256b @2048 ; CRC16: 0x1EC2
-  Write 256b @2304 ; CRC16: 0x19F0
-  Write 256b @2560 ; CRC16: 0xB8BD
-  Write 256b @2816 ; CRC16: 0x48AC
-  Write 256b @3072 ; CRC16: 0xD533
-  Write 256b @3328 ; CRC16: 0x99BC
-  Write 256b @3584 ; CRC16: 0x8BD8
-  Write 256b @3840 ; CRC16: 0x87E4
-  Write 256b @4096 ; CRC16: 0x31FD
-  Write 256b @4352 ; CRC16: 0x46B7
-  Write 256b @4608 ; CRC16: 0xA3C
-  Write 256b @4864 ; CRC16: 0xAD
-  Write 256b @5120 ; CRC16: 0x17F
-  Write 256b @5376 ; CRC16: 0xFFD
-  Write 256b @5632 ; CRC16: 0x6BC5
-  Write 256b @5888 ; CRC16: 0x1EFA
-  Write 256b @6144 ; CRC16: 0xD11E
-  Write 256b @6400 ; CRC16: 0x55E
-  Write 256b @6656 ; CRC16: 0xECBB
-  Write 256b @6912 ; CRC16: 0xF5C3
-  Write 256b @7168 ; CRC16: 0xEF40
-  Write 256b @7424 ; CRC16: 0xD01B
+  Write 256b @512 ; CRC16: 0x323D
+  Write 256b @768 ; CRC16: 0xED63
+  Write 256b @1024 ; CRC16: 0x8581
+  Write 256b @1280 ; CRC16: 0xB43D
+  Write 256b @1536 ; CRC16: 0xBE8A
+  Write 256b @1792 ; CRC16: 0x7770
+  Write 256b @2048 ; CRC16: 0xBA6A
+  Write 256b @2304 ; CRC16: 0xB75
+  Write 256b @2560 ; CRC16: 0xB39B
+  Write 256b @2816 ; CRC16: 0x1FF3
+  Write 256b @3072 ; CRC16: 0xFAFD
+  Write 256b @3328 ; CRC16: 0x1886
+  Write 256b @3584 ; CRC16: 0xBCBD
+  Write 256b @3840 ; CRC16: 0x91B6
+  Write 256b @4096 ; CRC16: 0x8E0B
+  Write 256b @4352 ; CRC16: 0x6D7E
+  Write 256b @4608 ; CRC16: 0x6C2F
+  Write 256b @4864 ; CRC16: 0x8DBC
+  Write 256b @5120 ; CRC16: 0x1DF
+  Write 256b @5376 ; CRC16: 0x3EB3
+  Write 256b @5632 ; CRC16: 0xE021
+  Write 256b @5888 ; CRC16: 0x597
+  Write 256b @6144 ; CRC16: 0xBA6D
+  Write 256b @6400 ; CRC16: 0x1BB2
+  Write 256b @6656 ; CRC16: 0x65CE
+  Write 256b @6912 ; CRC16: 0xD900
+  Write 256b @7168 ; CRC16: 0x9FB0
+  Write 256b @7424 ; CRC16: 0x3BC0
+  Write 256b @7680 ; CRC16: 0x8E7A
   Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 500000 to 38400 OK!
   Bootloader message:
   Task completed successfully!
-  Size: 7616 bytes, CRC16: 0xCB5E
+  Size: 7742 bytes, CRC16: 0x85D9
   File: base.hex
-  Time: 1275ms
+  Time: 1297ms
   Upload complete!
   Trying to close port...
   COM CLOSED!

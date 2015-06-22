@@ -19,7 +19,9 @@ enum Actions
 
 	MESSAGECORRUPTION_OCCURED,
 
-	UNKNOWN_COMMAND
+	UNKNOWN_COMMAND,
+
+	NO_COMMAND_TICK
 };
 
 typedef struct 
@@ -124,13 +126,24 @@ void setup(void)
 	clearReceptionBuffer();
 
 	InitMessage(&message);
+
+	startStopwatch1();
 }
 
 void loop(void)
 {
+	task_RP6System();
+
 	if (ReadMessage(&message))
 	{
-		if(!message.possiblyCorrupt)
+		if(message.possiblyCorrupt)
+		{
+			message.action = MESSAGECORRUPTION_OCCURED;
+			message.dataLen = 0;
+
+			WriteMessage(&message);
+		}
+		else
 		{
 			switch (message.action)
 			{
@@ -228,12 +241,26 @@ void loop(void)
 				break;
 			}
 		}
-		else
-		{
-			message.action = MESSAGECORRUPTION_OCCURED;
-			message.dataLen = 0;
+	}
+	else if(getStopwatch1() > 1000)
+	{
+		setStopwatch1(0);
 
-			WriteMessage(&message);
-		}
+		message.action = NO_COMMAND_TICK;
+		message.dataLen = 0;
+
+		WriteMessage(&message);
+
+		float batteryLevel = ((float)readADC(adcBat) / 1024.0f) * 100.0f;
+
+		memcpy(message.data, &batteryLevel, sizeof(batteryLevel));
+		message.dataLen = sizeof(batteryLevel);
+
+		WriteMessage(&message);
+
+		memcpy(message.data, &maximumspeed, sizeof(maximumspeed));
+		message.dataLen = sizeof(maximumspeed);
+
+		WriteMessage(&message);
 	}
 }
