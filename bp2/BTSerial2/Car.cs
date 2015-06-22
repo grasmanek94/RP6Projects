@@ -7,7 +7,7 @@ namespace BTSerial2
     {
         public enum Actions
         {
-            GET_BATTERY_LEVEL = 'A',
+            GET_BATTERY_LEVEL = 1,
 
             SET_MOTOR_L_SPEED,
             SET_MOTOR_R_SPEED,
@@ -25,7 +25,11 @@ namespace BTSerial2
 
             UNKNOWN_COMMAND,
 
-            NO_COMMAND_TICK
+            NO_COMMAND_TICK,
+
+            COMMANDS_SEND,
+
+            COMMANDS_READ
         };
 
         public delegate void OnValueUpdateHandler(object sender, Actions action);
@@ -38,35 +42,55 @@ namespace BTSerial2
         private System.Windows.Forms.Timer _Timer;
         //private System.Timers.Timer _Timer;
 
-        private volatile float _BatteryLevel;
-        private volatile short _MaxSpeed;
-        private volatile int _LastNoCommandTick;
-        private volatile int _CorruptionsOccured;
+        public string Name { get; private set; }
 
+        private volatile float _BatteryLevel;
         public float BatteryLevel
         {
             get { return _BatteryLevel; }
             private set { _BatteryLevel = value; }
         }
 
-		public string Name { get; private set; }
-
+        private volatile short _MaxSpeed;
         public short MaxSpeed
         {
             get { return _MaxSpeed; }
             private set { _MaxSpeed = value; }
         }
 
+        private volatile int _LastNoCommandTick;
         public int LastNoCommandTick
         {
             get { return _LastNoCommandTick; }
             private set { _LastNoCommandTick = value; }
         }
 
+        private volatile int _CorruptionsOccured;
         public int CorruptionsOccured
         {
             get { return _CorruptionsOccured; }
             private set { _CorruptionsOccured = value; }
+        }
+
+        private volatile int _CommandsSuccess;
+        public int CommandsSuccess
+        {
+            get { return _CommandsSuccess; }
+            private set { _CommandsSuccess = value; }
+        }
+
+        private volatile int _CommandsFail;
+        public int CommandsFail
+        {
+            get { return _CommandsFail; }
+            private set { _CommandsFail = value; }
+        }
+
+        private volatile int _UnknownCommands;
+        public int UnknownCommands
+        {
+            get { return _UnknownCommands; }
+            private set { _UnknownCommands = value; }
         }
 
         public Car (string name, SerialPort port)
@@ -161,6 +185,28 @@ namespace BTSerial2
 
                         case Actions.MESSAGECORRUPTION_OCCURED:
                             ++CorruptionsOccured;
+                            if (OnValueUpdate != null)
+                            {
+                                OnValueUpdate(this, (Actions)reader.Action);
+                            }
+                            break;
+
+                        case Actions.COMMAND_EXECUTION_FAILURE:
+                            ++CommandsFail;
+                            if (OnValueUpdate != null)
+                            {
+                                OnValueUpdate(this, (Actions)reader.Action);
+                            }
+                            break;
+                        case Actions.COMMAND_EXECUTION_SUCCESS:
+                            ++CommandsSuccess;
+                            if (OnValueUpdate != null)
+                            {
+                                OnValueUpdate(this, (Actions)reader.Action);
+                            }
+                            break;
+                        case Actions.UNKNOWN_COMMAND:
+                            ++UnknownCommands;
                             if (OnValueUpdate != null)
                             {
                                 OnValueUpdate(this, (Actions)reader.Action);

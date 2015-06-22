@@ -75,17 +75,24 @@ namespace BTSerial2
                 case Car.Actions.GET_BATTERY_LEVEL:
                     fuellb.Text = _RP9.BatteryLevel.ToString();
                     break;
-
                 case Car.Actions.GET_MAXIMUM_SPEED:
                     speedlb.Text = _RP9.MaxSpeed.ToString();
                     break;
-
                 case Car.Actions.NO_COMMAND_TICK:
                     lastAlive.Text = _RP9.LastNoCommandTick.ToString();
                     break;
                 case Car.Actions.MESSAGECORRUPTION_OCCURED:
                     crolbl.Text = _RP9.CorruptionsOccured.ToString();
-                    break;   
+                    break;
+                case Car.Actions.COMMAND_EXECUTION_FAILURE:
+                    cmdflbl.Text = _RP9.CommandsFail.ToString();
+                    break;
+                case Car.Actions.COMMAND_EXECUTION_SUCCESS:
+                    cmdslbl.Text = _RP9.CommandsSuccess.ToString();
+                    break;
+                case Car.Actions.UNKNOWN_COMMAND:
+                    cmdulbl.Text = _RP9.UnknownCommands.ToString();
+                    break;                
             }
 
             this.Refresh();

@@ -28,15 +28,6 @@
   
   Compiling: base.c
   avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=base.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/base.o.d base.c -o base.o
-  base.c: In function 'WriteBareMessage':
-  base.c:80:2: warning: pointer targets in passing argument 1 of 'writeStringLength' differ in signedness [-Wpointer-sign]
-    writeStringLength(tosend, 7 + dataLen, 0);
-    ^
-  In file included from D:\Development\RP6/RobotLoader/RP6Lib/RP6base/RP6RobotBaseLib.h:33:0,
-                   from base.c:1:
-  D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.h:42:6: note: expected 'char *' but argument is of type 'uint8_t *'
-   void writeStringLength(char *data, uint8_t length, uint8_t offset);
-        ^
   
   Compiling: D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c
   avr-gcc -c -mmcu=atmega32 -I. -gdwarf-2   -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -Wstrict-prototypes -Wa,-adhlns=D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.lst -I../common -ID:\Development\RP6/RobotLoader/RP6Lib -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control -ID:\Development\RP6/RobotLoader/RP6Lib/RP6common -ID:\Development\RP6/RobotLoader/RP6Lib/RP6base -ID:\Development\RP6/RobotLoader/RP6Lib/RP6control_M256_WIFI -std=gnu99 -MD -MP -MF .dep/RP6uart.o.d D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.c -o D:\Development\RP6/RobotLoader/RP6Lib/RP6common/RP6uart.o
@@ -69,10 +60,10 @@
   ----------------
   Device: atmega32
   
-  Program:    7704 bytes (23.5% Full)
+  Program:    7782 bytes (23.7% Full)
   (.text + .data + .bootloader)
   
-  Data:        278 bytes (13.6% Full)
+  Data:        242 bytes (11.8% Full)
   (.data + .bss + .noinit)
   
   
@@ -100,7 +91,7 @@
   Bootloader message:
   Upload in progress...
   Baudrate is set to: 38400
-  Uploading new program to target device; Range: 0 - 1e18
+  Uploading new program to target device; Range: 0 - 1e66
   Connected to target!
   Target ID received:
   RP6: Board ID 1, Firmware Version 1.4, Board Rev.: 5
@@ -110,51 +101,51 @@
   Connected to:
   "RP6 Robot Base"
   FW Version: 1.4
-  Battery Voltage: 6.93V
-  Voltage read: 6.93V
+  Battery Voltage: 6.84V
+  Voltage read: 6.84V
   Battery Voltage is in acceptable range.
   Setup High Speed...
   Speed ACK!
   Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 38400 to 500000 OK!
   Setup OK!
   Upload in progress...
-  Write 256b @0 ; CRC16: 0x5A75
+  Write 256b @0 ; CRC16: 0x1588
   Write 256b @256 ; CRC16: 0xADCB
-  Write 256b @512 ; CRC16: 0x42EF
-  Write 256b @768 ; CRC16: 0xB33D
-  Write 256b @1024 ; CRC16: 0xB27
-  Write 256b @1280 ; CRC16: 0x97FF
-  Write 256b @1536 ; CRC16: 0xC725
-  Write 256b @1792 ; CRC16: 0x8E72
-  Write 256b @2048 ; CRC16: 0xB79C
-  Write 256b @2304 ; CRC16: 0xB39F
-  Write 256b @2560 ; CRC16: 0x8C05
-  Write 256b @2816 ; CRC16: 0x5488
-  Write 256b @3072 ; CRC16: 0x1087
-  Write 256b @3328 ; CRC16: 0x5881
-  Write 256b @3584 ; CRC16: 0x871
-  Write 256b @3840 ; CRC16: 0x8FEA
-  Write 256b @4096 ; CRC16: 0x38F3
-  Write 256b @4352 ; CRC16: 0x4804
-  Write 256b @4608 ; CRC16: 0x3A25
-  Write 256b @4864 ; CRC16: 0x9B74
-  Write 256b @5120 ; CRC16: 0x2D4C
-  Write 256b @5376 ; CRC16: 0x2D58
-  Write 256b @5632 ; CRC16: 0xFF50
-  Write 256b @5888 ; CRC16: 0xF6A9
-  Write 256b @6144 ; CRC16: 0x2F5C
-  Write 256b @6400 ; CRC16: 0x6D64
-  Write 256b @6656 ; CRC16: 0x60EA
-  Write 256b @6912 ; CRC16: 0x3127
-  Write 256b @7168 ; CRC16: 0x9060
-  Write 256b @7424 ; CRC16: 0xDCB4
-  Write 256b @7680 ; CRC16: 0x3D5A
+  Write 256b @512 ; CRC16: 0x8906
+  Write 256b @768 ; CRC16: 0x16C5
+  Write 256b @1024 ; CRC16: 0x49B4
+  Write 256b @1280 ; CRC16: 0xB592
+  Write 256b @1536 ; CRC16: 0xC16
+  Write 256b @1792 ; CRC16: 0x352A
+  Write 256b @2048 ; CRC16: 0xC69D
+  Write 256b @2304 ; CRC16: 0x94A
+  Write 256b @2560 ; CRC16: 0x42C9
+  Write 256b @2816 ; CRC16: 0x831D
+  Write 256b @3072 ; CRC16: 0xB38C
+  Write 256b @3328 ; CRC16: 0x906
+  Write 256b @3584 ; CRC16: 0x282E
+  Write 256b @3840 ; CRC16: 0x80DB
+  Write 256b @4096 ; CRC16: 0xE0EA
+  Write 256b @4352 ; CRC16: 0x60CB
+  Write 256b @4608 ; CRC16: 0xD3E7
+  Write 256b @4864 ; CRC16: 0xE0D7
+  Write 256b @5120 ; CRC16: 0x1682
+  Write 256b @5376 ; CRC16: 0xC0E1
+  Write 256b @5632 ; CRC16: 0xDCC2
+  Write 256b @5888 ; CRC16: 0x7700
+  Write 256b @6144 ; CRC16: 0x9A52
+  Write 256b @6400 ; CRC16: 0xF978
+  Write 256b @6656 ; CRC16: 0xF264
+  Write 256b @6912 ; CRC16: 0xB343
+  Write 256b @7168 ; CRC16: 0x240C
+  Write 256b @7424 ; CRC16: 0x338E
+  Write 256b @7680 ; CRC16: 0x6790
   Change baudrate of USB0 | RP6 USB Interface | ARV87UJR from 500000 to 38400 OK!
   Bootloader message:
   Task completed successfully!
-  Size: 7704 bytes, CRC16: 0x5D81
+  Size: 7782 bytes, CRC16: 0x93AA
   File: base.hex
-  Time: 1307ms
+  Time: 1296ms
   Upload complete!
   Trying to close port...
   COM CLOSED!
