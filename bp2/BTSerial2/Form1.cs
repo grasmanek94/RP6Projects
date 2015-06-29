@@ -94,6 +94,8 @@ namespace PressureControl
 
         private void tmrForm_Tick(object sender, EventArgs e)
         {
+            trbBar.Value = (_rp6.Pressure/1000);
+            label4.Text = _rp6.Pressure.ToString();
             if (_rp6.LastSeen > DateTime.Now.AddSeconds(10))
             {
                 lblLastSeenVal.ForeColor = Color.Red;
@@ -103,16 +105,10 @@ namespace PressureControl
                 lblLastSeenVal.ForeColor = Color.Black;
                 lblLastSeenVal.Text = _rp6.LastSeen.ToLongTimeString();
             }
-
-            if (_rp6.IsConnected)
-            {
-                trbBar.Value = _rp6.UpdatePressure();
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            trbBar.Value = _rp6.UpdatePressure();
         }
     }
 }

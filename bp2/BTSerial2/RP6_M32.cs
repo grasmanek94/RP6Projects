@@ -8,6 +8,13 @@ namespace PressureControl
     {
         public DateTime LastSeen { private set; get;}
         public bool IsConnected { private set; get; }
+        public int Pressure { private set; get; }
+        public PumpStatus Pump { private set; get; }
+	    public enum PumpStatus
+	    {
+	        ON,
+	        OFF
+	    };
         public enum Actions
         {
             //TODO Add to protocol document 
@@ -17,6 +24,8 @@ namespace PressureControl
             HANDSHAKE_ACK,
             GET_PRESSURE,
             SET_PRESSURE,
+            SET_PUMP_ON,
+            SET_PUMP_OFF,
         };
 
         public delegate void OnValueUpdateHandler(object sender, Actions action);
@@ -72,7 +81,7 @@ namespace PressureControl
                         IsConnected = true;
                         break;
                     case Actions.SET_PRESSURE:
-                        _pressure = (_reader.Data[0] ^ _reader.Data[1] << 8);
+                        Pressure = (_reader.Data[0] ^ _reader.Data[1] << 8);
                         break;
                 }
             }
@@ -92,6 +101,13 @@ namespace PressureControl
 	    {
 	        return (_pressure/1000);
 	    }
+
+	    public void SetPump(PumpStatus status)
+	    {
+            _writer.Action = (byte)Actions.SET_PUMP_ON;
+            _writer.DataLen = 0;
+            _writer.Write(_serialPort);
+        }
 	}
 }
 
