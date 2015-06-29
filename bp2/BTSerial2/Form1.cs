@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace BTSerial2
     public partial class Form1 : Form
     {
         private SerialPort _serialPort;
-        private Car _RP9;
+        private RP6_M32 _rp6;
 
         public Form1()
         {
@@ -15,8 +16,7 @@ namespace BTSerial2
 
             _serialPort = new SerialPort();
 
-            _RP9 = new Car("RP9-RZE-53-UE", _serialPort);
-            _RP9.OnValueUpdate += OnValueUpdate;
+            _rp6 = new RP6_M32(_serialPort);
 
             RefreshComPorts();
         }
@@ -68,39 +68,8 @@ namespace BTSerial2
             Reconnect();
         }
 
-        private void OnValueUpdate(object sender, Car.Actions action)
+        private void OnValueUpdate(object sender, RP6_M32.Actions action)
         {
-            switch (action)
-            {
-                case Car.Actions.GET_BATTERY_LEVEL:
-                    fuellb.Text = _RP9.BatteryLevel.ToString();
-                    break;
-                case Car.Actions.GET_MAXIMUM_SPEED:
-                    speedlb.Text = _RP9.MaxSpeed.ToString();
-                    break;
-                case Car.Actions.NO_COMMAND_TICK:
-                    lastAlive.Text = _RP9.LastNoCommandTick.ToString();
-                    break;
-                case Car.Actions.MESSAGECORRUPTION_OCCURED:
-                    crolbl.Text = _RP9.CorruptionsOccured.ToString();
-                    break;
-                case Car.Actions.COMMAND_EXECUTION_FAILURE:
-                    cmdflbl.Text = _RP9.CommandsFail.ToString();
-                    break;
-                case Car.Actions.COMMAND_EXECUTION_SUCCESS:
-                    cmdslbl.Text = _RP9.CommandsSuccess.ToString();
-                    break;
-                case Car.Actions.UNKNOWN_COMMAND:
-                    cmdulbl.Text = _RP9.UnknownCommands.ToString();
-                    break;
-                case Car.Actions.COMMANDS_READ:
-                    crlbl.Text = _RP9.CommandsRead.ToString();
-                    break;
-                case Car.Actions.COMMANDS_SEND:
-                    cslbl.Text = _RP9.CommandsSend.ToString();
-                    break;              
-            }
-
             this.Refresh();
             Application.DoEvents();
         }
@@ -121,36 +90,19 @@ namespace BTSerial2
         private void button3_Click(object sender, EventArgs e)
         {
             RefreshComPorts();
-
-            _RP9.RequestValueUpdate(Car.Actions.GET_BATTERY_LEVEL);
-            _RP9.RequestValueUpdate(Car.Actions.GET_MAXIMUM_SPEED);
         }
 
-        private void stopbtn_Click(object sender, EventArgs e)
+        private void tmrForm_Tick(object sender, EventArgs e)
         {
-            motorLeft.Value = 0;
-            motorRight.Value = 0;
-            _RP9.Stop();
-        }
-
-        private void motorLeft_Scroll(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void motorRight_Scroll(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void motorLeft_MouseUp(object sender, MouseEventArgs e)
-        {
-            _RP9.setLeftMotor((byte)motorLeft.Value);
-        }
-
-        private void motorRight_MouseUp(object sender, MouseEventArgs e)
-        {
-            _RP9.setRightMotor((byte)motorRight.Value);
+            if (_rp6.LastSeen > DateTime.Now.AddSeconds(10))
+            {
+                lblLastSeenVal.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblLastSeenVal.ForeColor = Color.Black;
+                lblLastSeenVal.Text = _rp6.LastSeen.ToLongTimeString();
+            }
         }
     }
 }
