@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
 
-namespace BTSerial2
+namespace PressureControl
 {
     public partial class Form1 : Form
     {
@@ -103,6 +103,16 @@ namespace BTSerial2
                 lblLastSeenVal.ForeColor = Color.Black;
                 lblLastSeenVal.Text = _rp6.LastSeen.ToLongTimeString();
             }
+
+            if (_rp6.IsConnected)
+            {
+                trbBar.Value = _rp6.UpdatePressure();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            trbBar.Value = _rp6.UpdatePressure();
         }
     }
 }

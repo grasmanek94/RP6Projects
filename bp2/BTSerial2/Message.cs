@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-namespace BTSerial2
+namespace PressureControl
 {
 	public class Message
 	{
@@ -101,7 +101,7 @@ namespace BTSerial2
             this.Header[0] = this.Action;
             this.Header[1] = this.DataLen;
 
-            port.Write(this.Begin, 0, 2);
+             port.Write(this.Begin, 0, 2);
             port.Write(this.Header, 0, 2);
             port.Write(this.Data, 0, this.DataLen);
             port.Write(this.End, 0, 2);

@@ -2,16 +2,21 @@
 using System.IO.Ports;
 using System.Windows.Forms;
 
-namespace BTSerial2
+namespace PressureControl
 {
 	public class RP6_M32
     {
         public DateTime LastSeen { private set; get;}
+        public bool IsConnected { private set; get; }
         public enum Actions
         {
+            //TODO Add to protocol document 
             HEARTBEAT = 1,
+            HEARTBEAT_ACK,
             HANDSHAKE_START,
-            HANDSHAKE_ACK
+            HANDSHAKE_ACK,
+            GET_PRESSURE,
+            SET_PRESSURE,
         };
 
         public delegate void OnValueUpdateHandler(object sender, Actions action);
@@ -19,6 +24,8 @@ namespace BTSerial2
         private SerialPort _serialPort;
         private Message _writer;
         private Message _reader;
+
+	    private int _pressure;
 
         private System.Windows.Forms.Timer _Timer;
 
@@ -36,11 +43,6 @@ namespace BTSerial2
             _Timer.Start();
         }
 
-        private void _Timer_Elapsed1(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            _Timer_Elapsed(null, null);
-        }
-
         private void _Timer_Elapsed(object sender, EventArgs e)
         {
             if (_serialPort == null || !_serialPort.IsOpen)
@@ -51,20 +53,26 @@ namespace BTSerial2
             try
             {
                 if (_reader.Read(_serialPort) <= 0) return;
-
-                
-
                 switch ((Actions)_reader.Action)
                 {
                     case Actions.HEARTBEAT:
                         // Keep track of when the last communication occured
                         LastSeen = DateTime.Now;
+                        if (IsConnected)
+                        {
+                            _writer.Action = (byte) Actions.HEARTBEAT_ACK;
+                            _writer.DataLen = 0;
+                            _writer.Write(_serialPort);
+                        }
                         break;
-
                     case Actions.HANDSHAKE_START:
                         _writer.Action = (byte) Actions.HANDSHAKE_ACK;
                         _writer.DataLen = 0;
                         _writer.Write(_serialPort);
+                        IsConnected = true;
+                        break;
+                    case Actions.SET_PRESSURE:
+                        _pressure = (_reader.Data[0] ^ _reader.Data[1] << 8);
                         break;
                 }
             }
@@ -79,6 +87,11 @@ namespace BTSerial2
         {
             return false;
         }
+
+	    public int UpdatePressure()
+	    {
+	        return (_pressure/1000);
+	    }
 	}
 }
 

@@ -1,4 +1,4 @@
-﻿namespace BTSerial2
+﻿namespace PressureControl
 {
     partial class Form1
     {
@@ -36,6 +36,12 @@
             this.lblLastSeen = new System.Windows.Forms.Label();
             this.lblLastSeenVal = new System.Windows.Forms.Label();
             this.tmrForm = new System.Windows.Forms.Timer(this.components);
+            this.trbBar = new System.Windows.Forms.TrackBar();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.trbBar)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -97,11 +103,63 @@
             this.tmrForm.Enabled = true;
             this.tmrForm.Tick += new System.EventHandler(this.tmrForm_Tick);
             // 
+            // trbBar
+            // 
+            this.trbBar.Enabled = false;
+            this.trbBar.Location = new System.Drawing.Point(13, 42);
+            this.trbBar.Maximum = 6;
+            this.trbBar.Name = "trbBar";
+            this.trbBar.Size = new System.Drawing.Size(434, 45);
+            this.trbBar.SmallChange = 2000;
+            this.trbBar.TabIndex = 8;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(195, 264);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(434, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "6";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(224, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(13, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "3";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 475);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.trbBar);
             this.Controls.Add(this.lblLastSeenVal);
             this.Controls.Add(this.lblLastSeen);
             this.Controls.Add(this.comboBox1);
@@ -111,6 +169,7 @@
             this.Name = "Form1";
             this.Text = "Yop Spanjers - LPA";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.trbBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,6 +183,11 @@
         private System.Windows.Forms.Label lblLastSeen;
         private System.Windows.Forms.Label lblLastSeenVal;
         private System.Windows.Forms.Timer tmrForm;
+        private System.Windows.Forms.TrackBar trbBar;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

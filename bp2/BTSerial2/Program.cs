@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BTSerial2
+namespace PressureControl
 {
     static class Program
     {
