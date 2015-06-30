@@ -1,4 +1,4 @@
-﻿namespace BTSerial2.enums
+﻿namespace PressureControl.enums
 {
     public enum Actions
     {

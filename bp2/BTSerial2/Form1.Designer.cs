@@ -1,4 +1,4 @@
-﻿namespace BTSerial2
+﻿namespace PressureControl
 {
     partial class MainForm
     {

@@ -2,20 +2,20 @@
 using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
-using BTSerial2.enums;
+using PressureControl.enums;
 
-namespace BTSerial2
+namespace PressureControl
 {
     public partial class MainForm : Form
     {
         private SerialPort _serialPort;
-        private RP6_M32 _rp6;
+        private Rp6M32 _rp6;
 
         public MainForm()
         {
             InitializeComponent();
             _serialPort = new SerialPort();
-            _rp6 = new RP6_M32(_serialPort);
+            _rp6 = new Rp6M32(_serialPort);
             RefreshComPorts();
         }
 

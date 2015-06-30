@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BTSerial2.enums
+namespace PressureControl.enums
 {
     public enum ValveStatus
     {

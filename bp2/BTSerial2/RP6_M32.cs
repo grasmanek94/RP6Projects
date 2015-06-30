@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Windows.Forms;
-using BTSerial2.enums;
+using PressureControl.enums;
 
-namespace BTSerial2
+namespace PressureControl
 {
-    public class RP6_M32
+    public class Rp6M32
     {
         public DateTime LastSeen { private set; get; }
         public bool IsConnected { private set; get; }
@@ -20,9 +20,7 @@ namespace BTSerial2
         private Message _writer;
         private Message _reader;
 
-        private System.Windows.Forms.Timer _Timer;
-
-        public RP6_M32(SerialPort port)
+        public Rp6M32(SerialPort port)
         {
             _serialPort = port;
             LastSeen = DateTime.Now;
@@ -30,10 +28,10 @@ namespace BTSerial2
             _writer = new Message();
             _reader = new Message();
 
-            _Timer = new Timer {Interval = 50};
-            _Timer.Tick += _Timer_Elapsed;
-            _Timer.Enabled = true;
-            _Timer.Start();
+            var timer = new Timer {Interval = 50};
+            timer.Tick += _Timer_Elapsed;
+            timer.Enabled = true;
+            timer.Start();
         }
 
         private void _Timer_Elapsed(object sender, EventArgs e)

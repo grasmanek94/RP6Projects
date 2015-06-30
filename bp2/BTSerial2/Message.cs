@@ -1,23 +1,17 @@
 ﻿using System.IO.Ports;
 
-namespace BTSerial2
+namespace PressureControl
 {
 	public class Message
 	{
 		public byte[] Begin;
 		public byte[] End;
-
 		public byte Action { get; set; }
-
 		public byte DataLen { get; set; }
-
 		public bool PossiblyCorrupt { get; set; }
-
 		public byte[] Data { get; set; }
-
 		public byte[] Corruptioncheck;
 		public byte[] Header;
-
         public int AmountWritten;
         public int AmountRead;
 
@@ -49,46 +43,39 @@ namespace BTSerial2
 
 		public override string ToString()
 		{
-			return "Message - " + ((int)Action).ToString () + " - " + ((int)DataLen).ToString () + " - " + PossiblyCorrupt.ToString ();
+			return "Message - " + ((int)Action) + " - " + ((int)DataLen) + " - " + PossiblyCorrupt;
 		}
 
         public byte Read(SerialPort port)
         {
-            if (port.BytesToRead >= 6)
+            if (port.BytesToRead < 6 || 
+                port.ReadByte() != this.Begin[0] || 
+                port.ReadByte() != this.Begin[1]) return 0;
+            //Read action & Data lenght
+            this.Action = (byte)port.ReadByte();
+            this.DataLen = (byte)port.ReadByte();
+
+            if (this.DataLen != 0)
             {
-                if (port.ReadByte() == this.Begin[0])
+                if (this.DataLen > 25)
                 {
-                    if(port.ReadByte() == this.Begin[1])
-                    {
-                        //Read action & Data lenght
-                        this.Action = (byte)port.ReadByte();
-                        this.DataLen = (byte)port.ReadByte();
-
-                        if (this.DataLen != 0)
-                        {
-                            if (this.DataLen > 25)
-                            {
-                                this.DataLen = 25;
-                            }
-
-                            while (port.BytesToRead < this.DataLen + 2) { }
-
-                            port.Read(this.Data, 0, this.DataLen);
-                            this.Data[this.DataLen] = 0;
-                        }
-
-                        //Corruption check
-                        port.Read(this.Corruptioncheck, 0, 2);
-
-                        this.PossiblyCorrupt = this.Corruptioncheck[0] != this.End[0] || this.Corruptioncheck[1] != this.End[1];
-
-                        ++AmountRead;
-
-                        return (byte)(this.DataLen + 6);
-                    }
+                    this.DataLen = 25;
                 }
+
+                while (port.BytesToRead < this.DataLen + 2) { }
+
+                port.Read(this.Data, 0, this.DataLen);
+                this.Data[this.DataLen] = 0;
             }
-            return 0;
+
+            //Corruption check
+            port.Read(this.Corruptioncheck, 0, 2);
+
+            this.PossiblyCorrupt = this.Corruptioncheck[0] != this.End[0] || this.Corruptioncheck[1] != this.End[1];
+
+            ++AmountRead;
+
+            return (byte)(this.DataLen + 6);
         }
 
         /// <summary>
@@ -98,21 +85,18 @@ namespace BTSerial2
         /// <returns></returns>
         public byte Write(SerialPort port)
         {
-            if (port.IsOpen)
-            {
-                this.Header[0] = this.Action;
-                this.Header[1] = this.DataLen;
+            if (!port.IsOpen) return 0;
+            this.Header[0] = this.Action;
+            this.Header[1] = this.DataLen;
 
-                port.Write(this.Begin, 0, 2);
-                port.Write(this.Header, 0, 2);
-                port.Write(this.Data, 0, this.DataLen);
-                port.Write(this.End, 0, 2);
+            port.Write(this.Begin, 0, 2);
+            port.Write(this.Header, 0, 2);
+            port.Write(this.Data, 0, this.DataLen);
+            port.Write(this.End, 0, 2);
 
-                ++AmountWritten;
+            ++AmountWritten;
 
-                return (byte) (this.DataLen + 6);
-            }
-            return 0;
+            return (byte) (this.DataLen + 6);
         }
     }
 }
