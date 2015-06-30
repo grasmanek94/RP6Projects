@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-namespace PressureControl
+namespace BTSerial2
 {
 	public class Message
 	{
@@ -98,17 +98,21 @@ namespace PressureControl
         /// <returns></returns>
         public byte Write(SerialPort port)
         {
-            this.Header[0] = this.Action;
-            this.Header[1] = this.DataLen;
+            if (port.IsOpen)
+            {
+                this.Header[0] = this.Action;
+                this.Header[1] = this.DataLen;
 
-             port.Write(this.Begin, 0, 2);
-            port.Write(this.Header, 0, 2);
-            port.Write(this.Data, 0, this.DataLen);
-            port.Write(this.End, 0, 2);
+                port.Write(this.Begin, 0, 2);
+                port.Write(this.Header, 0, 2);
+                port.Write(this.Data, 0, this.DataLen);
+                port.Write(this.End, 0, 2);
 
-            ++AmountWritten;
+                ++AmountWritten;
 
-            return (byte)(this.DataLen + 6);
+                return (byte) (this.DataLen + 6);
+            }
+            return 0;
         }
     }
 }

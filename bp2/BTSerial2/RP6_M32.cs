@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Windows.Forms;
+using BTSerial2.enums;
 
-namespace PressureControl
+namespace BTSerial2
 {
     public class RP6_M32
     {
@@ -12,35 +13,6 @@ namespace PressureControl
         public int Pressure { private set; get; }
         public PumpStatus Pump { private set; get; }
         public ValveStatus Valve { private set; get; }
-
-        public enum PumpStatus
-        {
-            OFF,
-            ON
-        };
-
-        public enum ValveStatus
-        {
-            CLOSED,
-            OPEN
-        };
-
-        public enum Actions
-        {
-            //TODO Add to protocol document 
-            HEARTBEAT = 1,
-            HEARTBEAT_ACK,
-            HANDSHAKE_START,
-            HANDSHAKE_ACK,
-            GET_PRESSURE,
-            SET_PRESSURE,
-            SET_PUMP,
-            SET_VALVE,
-            RESET,
-            OVERRIDE,
-            SET_BAR,
-            UPDATE_VAL
-        };
 
         public delegate void OnValueUpdateHandler(object sender, Actions action);
 
@@ -108,11 +80,6 @@ namespace PressureControl
 
             }
 
-        }
-
-        public bool RequestValueUpdate(Actions action)
-        {
-            return false;
         }
 
         public void SetPump(PumpStatus status)

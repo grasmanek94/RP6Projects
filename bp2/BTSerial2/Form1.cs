@@ -2,8 +2,9 @@
 using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
+using BTSerial2.enums;
 
-namespace PressureControl
+namespace BTSerial2
 {
     public partial class MainForm : Form
     {
@@ -63,12 +64,6 @@ namespace PressureControl
             Reconnect();
         }
 
-        private void OnValueUpdate(object sender, RP6_M32.Actions action)
-        {
-            this.Refresh();
-            Application.DoEvents();
-        }
-
         private void RefreshComPorts()
         {
             comboBox1.Items.Clear();
@@ -89,7 +84,7 @@ namespace PressureControl
 
         private void tmrForm_Tick(object sender, EventArgs e)
         {
-            trbBar.Value = ((_rp6.Pressure > 6000) ? 6 : (_rp6.Pressure/1000));
+            trbBar.Value = ((_rp6.Pressure > 6000) ? 6 : (_rp6.Pressure)/1000);
             label4.Text = _rp6.Pressure.ToString();
             lblPumpStatus.Text = _rp6.Pump.ToString();
             lblValveStatus.Text = _rp6.Valve.ToString();
@@ -109,25 +104,25 @@ namespace PressureControl
         private void button2_Click(object sender, EventArgs e)
         {
             if (_rp6 == null || !_rp6.IsConnected) return;
-            _rp6.SetPump(RP6_M32.PumpStatus.ON);
+            _rp6.SetPump(PumpStatus.ON);
         }
 
         private void btnPumpOff_Click(object sender, EventArgs e)
         {
             if (_rp6 == null || !_rp6.IsConnected) return;
-            _rp6.SetPump(RP6_M32.PumpStatus.OFF);
+            _rp6.SetPump(PumpStatus.OFF);
         }
 
         private void btnValveOpen_Click(object sender, EventArgs e)
         {
             if (_rp6 == null || !_rp6.IsConnected) return;
-            _rp6.SetValve(RP6_M32.ValveStatus.OPEN);
+            _rp6.SetValve(ValveStatus.OPEN);
         }
 
         private void btnValveClose_Click(object sender, EventArgs e)
         {
             if (_rp6 == null || !_rp6.IsConnected) return;
-            _rp6.SetValve(RP6_M32.ValveStatus.CLOSED);
+            _rp6.SetValve(ValveStatus.CLOSED);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
