@@ -38,7 +38,6 @@ namespace PressureControl
             SET_VALVE,
             RESET,
             OVERRIDE,
-            OVERRIDE_ACK,
             SET_BAR,
             UPDATE_VAL
         };

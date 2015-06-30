@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace PressureControl
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private SerialPort _serialPort;
         private RP6_M32 _rp6;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             _serialPort = new SerialPort();

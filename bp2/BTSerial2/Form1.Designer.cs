@@ -1,6 +1,6 @@
 ﻿namespace PressureControl
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -51,19 +51,19 @@
             this.btnValveOpen = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblPumpStatusText = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblPumpStatusText = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnBar6 = new System.Windows.Forms.Button();
+            this.btnBar4 = new System.Windows.Forms.Button();
             this.btnBar0 = new System.Windows.Forms.Button();
             this.btnBar2 = new System.Windows.Forms.Button();
             this.Status = new System.Windows.Forms.GroupBox();
-            this.lblPumpStatus = new System.Windows.Forms.Label();
-            this.lblValveStatus = new System.Windows.Forms.Label();
-            this.lblValveStatusText = new System.Windows.Forms.Label();
-            this.btnBar4 = new System.Windows.Forms.Button();
-            this.btnBar6 = new System.Windows.Forms.Button();
             this.lblOverride = new System.Windows.Forms.Label();
             this.lblOverrideText = new System.Windows.Forms.Label();
+            this.lblValveStatus = new System.Windows.Forms.Label();
+            this.lblValveStatusText = new System.Windows.Forms.Label();
+            this.lblPumpStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trbBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -278,15 +278,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Manual override";
             // 
-            // lblPumpStatusText
-            // 
-            this.lblPumpStatusText.AutoSize = true;
-            this.lblPumpStatusText.Location = new System.Drawing.Point(6, 21);
-            this.lblPumpStatusText.Name = "lblPumpStatusText";
-            this.lblPumpStatusText.Size = new System.Drawing.Size(70, 13);
-            this.lblPumpStatusText.TabIndex = 19;
-            this.lblPumpStatusText.Text = "Pump Status:";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -295,6 +286,15 @@
             this.label7.Size = new System.Drawing.Size(50, 13);
             this.label7.TabIndex = 18;
             this.label7.Text = "Override:";
+            // 
+            // lblPumpStatusText
+            // 
+            this.lblPumpStatusText.AutoSize = true;
+            this.lblPumpStatusText.Location = new System.Drawing.Point(6, 21);
+            this.lblPumpStatusText.Name = "lblPumpStatusText";
+            this.lblPumpStatusText.Size = new System.Drawing.Size(70, 13);
+            this.lblPumpStatusText.TabIndex = 19;
+            this.lblPumpStatusText.Text = "Pump Status:";
             // 
             // groupBox4
             // 
@@ -308,6 +308,26 @@
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Pump";
+            // 
+            // btnBar6
+            // 
+            this.btnBar6.Location = new System.Drawing.Point(259, 19);
+            this.btnBar6.Name = "btnBar6";
+            this.btnBar6.Size = new System.Drawing.Size(75, 23);
+            this.btnBar6.TabIndex = 12;
+            this.btnBar6.Text = "6 (Bar)";
+            this.btnBar6.UseVisualStyleBackColor = true;
+            this.btnBar6.Click += new System.EventHandler(this.btnBar6_Click);
+            // 
+            // btnBar4
+            // 
+            this.btnBar4.Location = new System.Drawing.Point(176, 19);
+            this.btnBar4.Name = "btnBar4";
+            this.btnBar4.Size = new System.Drawing.Size(75, 23);
+            this.btnBar4.TabIndex = 11;
+            this.btnBar4.Text = "4 (Bar)";
+            this.btnBar4.UseVisualStyleBackColor = true;
+            this.btnBar4.Click += new System.EventHandler(this.btnBar4_Click);
             // 
             // btnBar0
             // 
@@ -344,14 +364,23 @@
             this.Status.TabStop = false;
             this.Status.Text = "Status";
             // 
-            // lblPumpStatus
+            // lblOverride
             // 
-            this.lblPumpStatus.AutoSize = true;
-            this.lblPumpStatus.Location = new System.Drawing.Point(82, 21);
-            this.lblPumpStatus.Name = "lblPumpStatus";
-            this.lblPumpStatus.Size = new System.Drawing.Size(27, 13);
-            this.lblPumpStatus.TabIndex = 20;
-            this.lblPumpStatus.Text = "OFF";
+            this.lblOverride.AutoSize = true;
+            this.lblOverride.Location = new System.Drawing.Point(82, 47);
+            this.lblOverride.Name = "lblOverride";
+            this.lblOverride.Size = new System.Drawing.Size(27, 13);
+            this.lblOverride.TabIndex = 24;
+            this.lblOverride.Text = "OFF";
+            // 
+            // lblOverrideText
+            // 
+            this.lblOverrideText.AutoSize = true;
+            this.lblOverrideText.Location = new System.Drawing.Point(6, 47);
+            this.lblOverrideText.Name = "lblOverrideText";
+            this.lblOverrideText.Size = new System.Drawing.Size(50, 13);
+            this.lblOverrideText.TabIndex = 23;
+            this.lblOverrideText.Text = "Override:";
             // 
             // lblValveStatus
             // 
@@ -371,45 +400,16 @@
             this.lblValveStatusText.TabIndex = 21;
             this.lblValveStatusText.Text = "Valve Status:";
             // 
-            // btnBar4
+            // lblPumpStatus
             // 
-            this.btnBar4.Location = new System.Drawing.Point(176, 19);
-            this.btnBar4.Name = "btnBar4";
-            this.btnBar4.Size = new System.Drawing.Size(75, 23);
-            this.btnBar4.TabIndex = 11;
-            this.btnBar4.Text = "4 (Bar)";
-            this.btnBar4.UseVisualStyleBackColor = true;
-            this.btnBar4.Click += new System.EventHandler(this.btnBar4_Click);
+            this.lblPumpStatus.AutoSize = true;
+            this.lblPumpStatus.Location = new System.Drawing.Point(82, 21);
+            this.lblPumpStatus.Name = "lblPumpStatus";
+            this.lblPumpStatus.Size = new System.Drawing.Size(27, 13);
+            this.lblPumpStatus.TabIndex = 20;
+            this.lblPumpStatus.Text = "OFF";
             // 
-            // btnBar6
-            // 
-            this.btnBar6.Location = new System.Drawing.Point(259, 19);
-            this.btnBar6.Name = "btnBar6";
-            this.btnBar6.Size = new System.Drawing.Size(75, 23);
-            this.btnBar6.TabIndex = 12;
-            this.btnBar6.Text = "6 (Bar)";
-            this.btnBar6.UseVisualStyleBackColor = true;
-            this.btnBar6.Click += new System.EventHandler(this.btnBar6_Click);
-            // 
-            // lblOverride
-            // 
-            this.lblOverride.AutoSize = true;
-            this.lblOverride.Location = new System.Drawing.Point(82, 47);
-            this.lblOverride.Name = "lblOverride";
-            this.lblOverride.Size = new System.Drawing.Size(27, 13);
-            this.lblOverride.TabIndex = 24;
-            this.lblOverride.Text = "OFF";
-            // 
-            // lblOverrideText
-            // 
-            this.lblOverrideText.AutoSize = true;
-            this.lblOverrideText.Location = new System.Drawing.Point(6, 47);
-            this.lblOverrideText.Name = "lblOverrideText";
-            this.lblOverrideText.Size = new System.Drawing.Size(50, 13);
-            this.lblOverrideText.TabIndex = 23;
-            this.lblOverrideText.Text = "Override:";
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -432,7 +432,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Yop Spanjers - LPA";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.trbBar)).EndInit();
