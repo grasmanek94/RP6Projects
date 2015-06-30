@@ -62,6 +62,8 @@
             this.lblValveStatusText = new System.Windows.Forms.Label();
             this.btnBar4 = new System.Windows.Forms.Button();
             this.btnBar6 = new System.Windows.Forms.Button();
+            this.lblOverride = new System.Windows.Forms.Label();
+            this.lblOverrideText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trbBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -329,6 +331,8 @@
             // 
             // Status
             // 
+            this.Status.Controls.Add(this.lblOverride);
+            this.Status.Controls.Add(this.lblOverrideText);
             this.Status.Controls.Add(this.lblValveStatus);
             this.Status.Controls.Add(this.lblValveStatusText);
             this.Status.Controls.Add(this.lblPumpStatus);
@@ -386,6 +390,24 @@
             this.btnBar6.Text = "6 (Bar)";
             this.btnBar6.UseVisualStyleBackColor = true;
             this.btnBar6.Click += new System.EventHandler(this.btnBar6_Click);
+            // 
+            // lblOverride
+            // 
+            this.lblOverride.AutoSize = true;
+            this.lblOverride.Location = new System.Drawing.Point(82, 47);
+            this.lblOverride.Name = "lblOverride";
+            this.lblOverride.Size = new System.Drawing.Size(27, 13);
+            this.lblOverride.TabIndex = 24;
+            this.lblOverride.Text = "OFF";
+            // 
+            // lblOverrideText
+            // 
+            this.lblOverrideText.AutoSize = true;
+            this.lblOverrideText.Location = new System.Drawing.Point(6, 47);
+            this.lblOverrideText.Name = "lblOverrideText";
+            this.lblOverrideText.Size = new System.Drawing.Size(50, 13);
+            this.lblOverrideText.TabIndex = 23;
+            this.lblOverrideText.Text = "Override:";
             // 
             // Form1
             // 
@@ -460,6 +482,8 @@
         private System.Windows.Forms.Label lblPumpStatus;
         private System.Windows.Forms.Button btnBar6;
         private System.Windows.Forms.Button btnBar4;
+        private System.Windows.Forms.Label lblOverride;
+        private System.Windows.Forms.Label lblOverrideText;
     }
 }
 

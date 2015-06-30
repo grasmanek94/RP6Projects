@@ -8,6 +8,7 @@ namespace PressureControl
     {
         public DateTime LastSeen { private set; get; }
         public bool IsConnected { private set; get; }
+        public bool Override { private set; get; }
         public int Pressure { private set; get; }
         public PumpStatus Pump { private set; get; }
         public ValveStatus Valve { private set; get; }
@@ -99,6 +100,7 @@ namespace PressureControl
                         Pressure = (_reader.Data[0] ^ _reader.Data[1] << 8);
                         Valve = (ValveStatus) _reader.Data[2];
                         Pump = (PumpStatus) _reader.Data[3];
+                        Override = (_reader.Data[4] == 1);
                         break;
                 }
             }
@@ -130,10 +132,11 @@ namespace PressureControl
             _writer.Write(_serialPort);
         }
 
-        public void Override(ValveStatus status)
+        public void SetOverride(bool var)
         {
             _writer.Action = (byte) Actions.OVERRIDE;
-            _writer.DataLen = 0;
+            _writer.DataLen = 1;
+            _writer.Data[0] = (var ? (byte)1 : (byte)0);
             _writer.Write(_serialPort);
         }
 

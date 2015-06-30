@@ -98,6 +98,7 @@ namespace PressureControl
             label4.Text = _rp6.Pressure.ToString();
             lblPumpStatus.Text = _rp6.Pump.ToString();
             lblValveStatus.Text = _rp6.Valve.ToString();
+            lblOverride.Text = _rp6.Override.ToString();
             if (_rp6.LastSeen > DateTime.Now.AddSeconds(10))
             {
                 lblLastSeenVal.ForeColor = Color.Red;
@@ -136,6 +137,7 @@ namespace PressureControl
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (_rp6 == null || !_rp6.IsConnected) return;
+            _rp6.SetOverride(checkBox1.Checked);
         }
 
         private void btnBar0_Click(object sender, EventArgs e)
