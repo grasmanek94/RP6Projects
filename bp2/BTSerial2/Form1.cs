@@ -94,7 +94,8 @@ namespace PressureControl
             lblPumpStatus.Text = _rp6.Pump.ToString();
             lblValveStatus.Text = _rp6.Valve.ToString();
             lblOverride.Text = _rp6.Override.ToString();
-            if (_rp6.LastSeen > DateTime.Now.AddSeconds(10))
+
+            if (_rp6.LastSeen < DateTime.Now.AddSeconds(-10))
             {
                 lblLastSeenVal.ForeColor = Color.Red;
             }

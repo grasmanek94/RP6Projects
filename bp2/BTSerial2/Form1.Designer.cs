@@ -64,12 +64,15 @@
             this.lblValveStatus = new System.Windows.Forms.Label();
             this.lblValveStatusText = new System.Windows.Forms.Label();
             this.lblPumpStatus = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.trbBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.Status.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -111,7 +114,7 @@
             // lblLastSeen
             // 
             this.lblLastSeen.AutoSize = true;
-            this.lblLastSeen.Location = new System.Drawing.Point(9, 453);
+            this.lblLastSeen.Location = new System.Drawing.Point(6, 60);
             this.lblLastSeen.Name = "lblLastSeen";
             this.lblLastSeen.Size = new System.Drawing.Size(58, 13);
             this.lblLastSeen.TabIndex = 6;
@@ -120,7 +123,7 @@
             // lblLastSeenVal
             // 
             this.lblLastSeenVal.AutoSize = true;
-            this.lblLastSeenVal.Location = new System.Drawing.Point(73, 453);
+            this.lblLastSeenVal.Location = new System.Drawing.Point(82, 60);
             this.lblLastSeenVal.Name = "lblLastSeenVal";
             this.lblLastSeenVal.Size = new System.Drawing.Size(58, 13);
             this.lblLastSeenVal.TabIndex = 7;
@@ -134,10 +137,10 @@
             // trbBar
             // 
             this.trbBar.Enabled = false;
-            this.trbBar.Location = new System.Drawing.Point(94, 42);
+            this.trbBar.Location = new System.Drawing.Point(101, 19);
             this.trbBar.Maximum = 6;
             this.trbBar.Name = "trbBar";
-            this.trbBar.Size = new System.Drawing.Size(353, 45);
+            this.trbBar.Size = new System.Drawing.Size(334, 45);
             this.trbBar.SmallChange = 2000;
             this.trbBar.TabIndex = 8;
             // 
@@ -154,7 +157,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(101, 74);
+            this.label1.Location = new System.Drawing.Point(111, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 13);
             this.label1.TabIndex = 10;
@@ -163,7 +166,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(434, 74);
+            this.label2.Location = new System.Drawing.Point(416, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 11;
@@ -172,16 +175,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(224, 74);
+            this.label3.Location = new System.Drawing.Point(208, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "3";
+            this.label3.Text = "2";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(101, 90);
+            this.label4.Location = new System.Drawing.Point(111, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 13;
@@ -191,7 +194,7 @@
             // 
             this.groupBox1.Controls.Add(this.btnPumpOff);
             this.groupBox1.Controls.Add(this.btnPumpOn);
-            this.groupBox1.Location = new System.Drawing.Point(12, 128);
+            this.groupBox1.Location = new System.Drawing.Point(12, 146);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(168, 49);
             this.groupBox1.TabIndex = 14;
@@ -211,7 +214,7 @@
             // lblBarName
             // 
             this.lblBarName.AutoSize = true;
-            this.lblBarName.Location = new System.Drawing.Point(12, 74);
+            this.lblBarName.Location = new System.Drawing.Point(19, 51);
             this.lblBarName.Name = "lblBarName";
             this.lblBarName.Size = new System.Drawing.Size(76, 13);
             this.lblBarName.TabIndex = 15;
@@ -220,7 +223,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 90);
+            this.label5.Location = new System.Drawing.Point(11, 64);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 16;
@@ -230,7 +233,7 @@
             // 
             this.groupBox2.Controls.Add(this.btnValveClose);
             this.groupBox2.Controls.Add(this.btnValveOpen);
-            this.groupBox2.Location = new System.Drawing.Point(12, 176);
+            this.groupBox2.Location = new System.Drawing.Point(12, 201);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(168, 49);
             this.groupBox2.TabIndex = 15;
@@ -271,7 +274,7 @@
             // 
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Location = new System.Drawing.Point(12, 231);
+            this.groupBox3.Location = new System.Drawing.Point(12, 256);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(168, 49);
             this.groupBox3.TabIndex = 18;
@@ -302,16 +305,16 @@
             this.groupBox4.Controls.Add(this.btnBar4);
             this.groupBox4.Controls.Add(this.btnBar0);
             this.groupBox4.Controls.Add(this.btnBar2);
-            this.groupBox4.Location = new System.Drawing.Point(12, 286);
+            this.groupBox4.Location = new System.Drawing.Point(12, 311);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(341, 49);
+            this.groupBox4.Size = new System.Drawing.Size(435, 49);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Pump";
             // 
             // btnBar6
             // 
-            this.btnBar6.Location = new System.Drawing.Point(259, 19);
+            this.btnBar6.Location = new System.Drawing.Point(354, 19);
             this.btnBar6.Name = "btnBar6";
             this.btnBar6.Size = new System.Drawing.Size(75, 23);
             this.btnBar6.TabIndex = 12;
@@ -321,7 +324,7 @@
             // 
             // btnBar4
             // 
-            this.btnBar4.Location = new System.Drawing.Point(176, 19);
+            this.btnBar4.Location = new System.Drawing.Point(248, 19);
             this.btnBar4.Name = "btnBar4";
             this.btnBar4.Size = new System.Drawing.Size(75, 23);
             this.btnBar4.TabIndex = 11;
@@ -341,7 +344,7 @@
             // 
             // btnBar2
             // 
-            this.btnBar2.Location = new System.Drawing.Point(89, 19);
+            this.btnBar2.Location = new System.Drawing.Point(114, 19);
             this.btnBar2.Name = "btnBar2";
             this.btnBar2.Size = new System.Drawing.Size(75, 23);
             this.btnBar2.TabIndex = 9;
@@ -357,9 +360,11 @@
             this.Status.Controls.Add(this.lblValveStatusText);
             this.Status.Controls.Add(this.lblPumpStatus);
             this.Status.Controls.Add(this.lblPumpStatusText);
-            this.Status.Location = new System.Drawing.Point(186, 128);
+            this.Status.Controls.Add(this.lblLastSeenVal);
+            this.Status.Controls.Add(this.lblLastSeen);
+            this.Status.Location = new System.Drawing.Point(188, 146);
             this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(167, 152);
+            this.Status.Size = new System.Drawing.Size(259, 159);
             this.Status.TabIndex = 20;
             this.Status.TabStop = false;
             this.Status.Text = "Status";
@@ -409,29 +414,48 @@
             this.lblPumpStatus.TabIndex = 20;
             this.lblPumpStatus.Text = "OFF";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(310, 51);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "4";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.lblBarName);
+            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.trbBar);
+            this.groupBox5.Location = new System.Drawing.Point(12, 40);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(435, 100);
+            this.groupBox5.TabIndex = 22;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "groupBox5";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 475);
+            this.ClientSize = new System.Drawing.Size(459, 365);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.lblBarName);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.trbBar);
-            this.Controls.Add(this.lblLastSeenVal);
-            this.Controls.Add(this.lblLastSeen);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MainForm";
             this.Text = "Yop Spanjers - LPA";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -443,6 +467,8 @@
             this.groupBox4.ResumeLayout(false);
             this.Status.ResumeLayout(false);
             this.Status.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,6 +510,8 @@
         private System.Windows.Forms.Button btnBar4;
         private System.Windows.Forms.Label lblOverride;
         private System.Windows.Forms.Label lblOverrideText;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }
 
