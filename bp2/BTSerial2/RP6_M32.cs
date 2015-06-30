@@ -4,17 +4,26 @@ using System.Windows.Forms;
 
 namespace PressureControl
 {
-	public class RP6_M32
+    public class RP6_M32
     {
-        public DateTime LastSeen { private set; get;}
+        public DateTime LastSeen { private set; get; }
         public bool IsConnected { private set; get; }
         public int Pressure { private set; get; }
         public PumpStatus Pump { private set; get; }
-	    public enum PumpStatus
-	    {
-	        ON,
-	        OFF
-	    };
+        public ValveStatus Valve { private set; get; }
+
+        public enum PumpStatus
+        {
+            OFF,
+            ON
+        };
+
+        public enum ValveStatus
+        {
+            CLOSED,
+            OPEN
+        };
+
         public enum Actions
         {
             //TODO Add to protocol document 
@@ -24,8 +33,13 @@ namespace PressureControl
             HANDSHAKE_ACK,
             GET_PRESSURE,
             SET_PRESSURE,
-            SET_PUMP_ON,
-            SET_PUMP_OFF,
+            SET_PUMP,
+            SET_VALVE,
+            RESET,
+            OVERRIDE,
+            OVERRIDE_ACK,
+            SET_BAR,
+            UPDATE_VAL
         };
 
         public delegate void OnValueUpdateHandler(object sender, Actions action);
@@ -34,12 +48,10 @@ namespace PressureControl
         private Message _writer;
         private Message _reader;
 
-	    private int _pressure;
-
         private System.Windows.Forms.Timer _Timer;
 
-        public RP6_M32 (SerialPort port)
-		{
+        public RP6_M32(SerialPort port)
+        {
             _serialPort = port;
             LastSeen = DateTime.Now;
 
@@ -62,7 +74,7 @@ namespace PressureControl
             try
             {
                 if (_reader.Read(_serialPort) <= 0) return;
-                switch ((Actions)_reader.Action)
+                switch ((Actions) _reader.Action)
                 {
                     case Actions.HEARTBEAT:
                         // Keep track of when the last communication occured
@@ -83,6 +95,11 @@ namespace PressureControl
                     case Actions.SET_PRESSURE:
                         Pressure = (_reader.Data[0] ^ _reader.Data[1] << 8);
                         break;
+                    case Actions.UPDATE_VAL:
+                        Pressure = (_reader.Data[0] ^ _reader.Data[1] << 8);
+                        Valve = (ValveStatus) _reader.Data[2];
+                        Pump = (PumpStatus) _reader.Data[3];
+                        break;
                 }
             }
             catch (Exception)
@@ -97,17 +114,36 @@ namespace PressureControl
             return false;
         }
 
-	    public int UpdatePressure()
-	    {
-	        return (_pressure/1000);
-	    }
+        public void SetPump(PumpStatus status)
+        {
+            _writer.Action = (byte) Actions.SET_PUMP;
+            _writer.DataLen = 1;
+            _writer.Data[0] = (byte) status;
+            _writer.Write(_serialPort);
+        }
 
-	    public void SetPump(PumpStatus status)
-	    {
-            _writer.Action = (byte)Actions.SET_PUMP_ON;
+        public void SetValve(ValveStatus status)
+        {
+            _writer.Action = (byte) Actions.SET_VALVE;
+            _writer.DataLen = 1;
+            _writer.Data[0] = (byte) status;
+            _writer.Write(_serialPort);
+        }
+
+        public void Override(ValveStatus status)
+        {
+            _writer.Action = (byte) Actions.OVERRIDE;
             _writer.DataLen = 0;
             _writer.Write(_serialPort);
         }
-	}
+
+        public void SetBar(byte bar)
+        {
+            _writer.Action = (byte)Actions.SET_BAR;
+            _writer.DataLen = 1;
+            _writer.Data[0] = bar;
+            _writer.Write(_serialPort);
+        }
+    }
 }
 
