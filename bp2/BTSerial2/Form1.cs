@@ -13,15 +13,10 @@ namespace PressureControl
         public Form1()
         {
             InitializeComponent();
-
             _serialPort = new SerialPort();
-
             _rp6 = new RP6_M32(_serialPort);
-
             RefreshComPorts();
         }
-
-        private string buffer = "";
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -77,9 +72,9 @@ namespace PressureControl
         private void RefreshComPorts()
         {
             comboBox1.Items.Clear();
-            foreach (string COM_Port in SerialPort.GetPortNames())
+            foreach (string comPort in SerialPort.GetPortNames())
             {
-                comboBox1.Items.Add(COM_Port);
+                comboBox1.Items.Add(comPort);
             }
             if (comboBox1.Items.Count > 0)
             {
@@ -155,7 +150,7 @@ namespace PressureControl
         private void btnBar4_Click(object sender, EventArgs e)
         {
             if (_rp6 == null || !_rp6.IsConnected) return;
-            _rp6.SetBar(6);
+            _rp6.SetBar(4);
         }
 
         private void btnBar6_Click(object sender, EventArgs e)
