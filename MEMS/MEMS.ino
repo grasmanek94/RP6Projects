@@ -204,8 +204,8 @@ void loop()
   if (timeNow - lastPrintTime > 100000)
   {
     lastPrintTime = timeNow;
-    sprintf(report, "X: %4d Y: %4d Z: %4d S: %4d M: ", (int)hoek.x, (int)hoek.y, (int)hoek.z, (unsigned long)currentSpeed);
-    Serial.print(report);
+    //sprintf(report, "X: %4d Y: %4d Z: %4d S: %4d M: ", (int)hoek.x, (int)hoek.y, (int)hoek.z, (unsigned long)currentSpeed);
+    //Serial.print(report);
     Serial.println(totalDistance);
   }
   delay(1);
